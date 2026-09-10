@@ -1,0 +1,60 @@
+---
+import Image from "astro/components/Image.astro";
+import logo from "../assets/logo.svg";
+import SocialIcon from "./SocialIcon.astro";
+import Nav from "./Nav.astro";
+---
+
+<header class="z-20 bg-white fixed left-0 right-0">
+  <div class="bg-primary flex justify-between items-center px-4 py-2">
+    <a
+      href="mailto:hola@amazingtravel.com"
+      class="hover:text-violet-600 transition text-white"
+    >
+      hola@amazingtravel.com
+    </a>
+    <div>
+      <ul class="flex list-none gap-4 items-center justify-center">
+        <li>
+          <SocialIcon href="https://www.instagram.com/" name="Instagram" />
+        </li>
+        <li>
+          <SocialIcon
+            href="https://www.facebook.com/?locale=es_LA"
+            name="Facebook"
+          />
+        </li>
+        <li>
+          <SocialIcon href="https://web.whatsapp.com/" name="Whatsapp" />
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="relative flex items-center justify-between p-5">
+    <a href="/" aria-label="Ir al inicio">
+      <Image width={120} src={logo} alt="Logo de la marca" priority />
+    </a>
+    <Nav />
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col gap-1.5"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="main-nav"
+    >
+      <span class="block w-6 h-0.5 bg-primary"></span>
+      <span class="block w-6 h-0.5 bg-primary"></span>
+      <span class="block w-6 h-0.5 bg-primary"></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("main-nav");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = nav?.classList.toggle("hidden");
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+  });
+</script>

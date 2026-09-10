@@ -1,0 +1,22 @@
+---
+import ArrowUp from "./icons/ArrowUp.astro";
+import WhatsappColour from "./icons/social-icons/WhatsappColour.astro";
+
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<div class="fixed grid gap-3 place-items-center right-10 bottom-10">
+  <a
+    href=`#${href}`
+    class="bg-acent grid place-content-center hover:bg-acent/90 rounded-full w-9 h-9"
+  >
+    <ArrowUp />
+  </a>
+  <a href="#">
+    <WhatsappColour />
+  </a>
+</div>

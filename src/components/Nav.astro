@@ -1,0 +1,30 @@
+---
+import { navItems } from "../data/Nav";
+import NavItem from "./NavItem.astro";
+
+const ruta = Astro.url.pathname;
+---
+
+<nav
+  class="hidden md:flex items-center justify-center gap-15 md:static md:flex-row md:bg-transparent md:p-0 absolute top-full left-0 right-0 bg-white flex-col p-5 shadow-md md:shadow-none"
+  id="main-nav"
+>
+  <ul class="flex flex-col md:flex-row gap-4 md:gap-15">
+    {
+      navItems.map((item) => (
+        <NavItem
+          isActive={
+            item.href === "/" ? ruta === "/" : ruta.startsWith(item.href)
+          }
+          href={item.href}
+          label={item.label}
+        />
+      ))
+    }
+  </ul>
+  <a
+    href="/cotiza"
+    class="hover:transition-colors hover:bg-[#6e72c3] bg-primary py-2 px-4 rounded-3xl text-white font-medium text-center"
+    >Cotizá tu viaje acá</a
+  >
+</nav>

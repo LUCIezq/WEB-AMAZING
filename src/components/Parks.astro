@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import { homeData } from "../data/Home";
+import image from "../assets/parks.jpg";
+
+const { parks } = homeData;
+---
+
+<section
+  class="flex flex-col md:flex-row gap-10 w-full h-full items-center min-h-80 timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%]"
+>
+  <Image alt="Estatua" src={image} width={350} />
+
+  <div class="flex gap-4 flex-col w-full justify-center">
+    <div>
+      <span
+        class="text-eyebrow font-instrument font-semibold uppercase text-acent"
+      >
+        {parks.eyebrow}
+      </span>
+      <div class="grid gap-2">
+        <h6 class="font-display text-title-md font-semibold">
+          {parks.title}
+        </h6>
+        <p class="font-instrument font-medium">
+          El castillo de Disney y el castillo de Hogwarts en un mismo
+          itinerario. <b>Combinamos parques, hoteles y tickets </b> para que vivas
+          los dos universos sin perder tiempo ni presupuesto.
+        </p>
+      </div>
+    </div>
+
+    <a
+      href={parks.linkUrl}
+      class="bg-primary text-white font-semibold place-self-center md:place-self-start font-instrument py-3 px-5 rounded-4xl"
+      >{parks.linkText}</a
+    >
+  </div>
+</section>

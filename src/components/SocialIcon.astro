@@ -1,0 +1,20 @@
+---
+import Facebook from "./icons/social-icons/Facebook.astro";
+import Instagram from "./icons/social-icons/Instagram.astro";
+import Whatsapp from "./icons/social-icons/Whatsapp.astro";
+
+interface Props {
+  href: string;
+  name: "Whatsapp" | "Facebook" | "Instagram";
+}
+
+const { href, name } = Astro.props;
+
+const Icon = { Whatsapp, Instagram, Facebook }[name];
+---
+
+<a href={href} aria-label={name} class="w-5 h-5">
+  <div class="w-3.5 h-3.5 text-white">
+    <Icon />
+  </div>
+</a>

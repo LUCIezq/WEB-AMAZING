@@ -1,0 +1,46 @@
+---
+import Arrow from "../components/icons/Arrow.astro";
+import { homeData } from "../data/Home";
+import { Image } from "astro:assets";
+import backgroundHero from "../assets/background-hero.jpg";
+
+const { hero } = homeData;
+---
+
+<section class="relative isolate h-screen w-full object-cover overflow-hidden">
+  <picture>
+    <source
+      media="(min-width: 768px)"
+      srcset="../assets/background-hero-desktop.jpg"
+    />
+    <Image
+      src={backgroundHero}
+      alt=""
+      priority
+      class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+    />
+  </picture>
+
+  <div class="absolute inset-0 z-0 bg-black/45"></div>
+  <div
+    class="absolute inset-0 z-10 flex w-full flex-col items-center justify-center gap-8 px-6 text-white"
+  >
+    <h2
+      class="font-display leading-12 max-w-2xl font-bold text-title-lg text-wrap md:text-hero-title text-center"
+    >
+      {hero.title}
+    </h2>
+    <div class="border border-white opacity-60 w-full max-w-80 md:max-w-3xl">
+    </div>
+    <h3 class="font-semibold font-instrument text-subtitle-lg">
+      {hero.subtitle}
+    </h3>
+    <a
+      href="#nosotras"
+      class="absolute bottom-0 flex flex-col items-center justify-center gap-2 font-instrument text-subtitle-sm font-extralight hover:underline hover:transition-all"
+    >
+      {hero.link}
+      <Arrow />
+    </a>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+---
+import Stars from "./icons/stars.astro";
+import { homeData } from "../data/Home";
+
+const { experience } = homeData;
+---
+
+<section
+  class="relative w-full timeline-view text-center p-3 animate-blurred-fade-in animate-range-[entry_10%_contain_30%]"
+>
+  <div
+    class="p-5 md:p-10 bg-primary flex flex-col gap-5 rounded-4xl text-white"
+  >
+    <div class="w-full flex flex-col gap-8">
+      <div class="flex flex-col gap-3">
+        <div
+          class="flex flex-col md:flex-row border-b pb-4 items-center justify-center w-fit gap-3 border-white"
+        >
+          <Stars />
+          <h5 class="text-title-md font-display font-semibold">
+            {experience.title}
+          </h5>
+        </div>
+
+        <p class="text-start font-instrument text-card-description max-w-xs">
+          Hace <b>más de 8 años</b> ayudamos a familias y viajeros a planificar su
+          experiencia ideal en Disney y Universal, con <b
+            >atención personalizada, asesoría profesional y sin costo adicional.</b
+          >
+        </p>
+      </div>
+      <div class="flex flex-col gap-3 font-instrument w-full">
+        <p class="text-start font-semibold md:max-w-72">
+          ¡Escribinos y empecemos a organizar tu <i>próxima aventura mágica!</i>
+        </p>
+        <a
+          class="bg-button md:place-self-start place-self-center rounded-3xl text-black font-bold py-3 px-6"
+          href="#">{experience.link}</a
+        >
+      </div>
+    </div>
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/videos/hero-poster.jpg"
+      class="md:absolute static md:max-w-lg top-36 rounded-2xl right-10"
+    >
+      <source src="/videos/hero-loop.webm" type="video/webm" />
+      <source src="/videos/hero-loop.mp4" type="video/mp4" />
+    </video>
+  </div>
+</section>

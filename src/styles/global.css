@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "tailwind-animations";
+
+@theme {
+  /*Fuentes*/
+  --font-display: "Playfair Display", serif;
+  --font-instrument: "Instrument Sans Variable", sans-serif;
+
+  /*Textos*/
+  --text-title-lg: 3rem;
+  --text-title-md: 1.875rem;
+  --text-subtitle-lg: 1.1rem;
+  --text-subtitle-md: 1rem;
+  --text-subtitle-sm: 0.8rem;
+  --text-hero-title: 3.75rem;
+  --text-card-title: 1.4rem;
+  --text-card-description: 0.87rem;
+  --text-eyebrow: 0.9rem;
+  /*Colores principales*/
+  --color-primary: #7c80c4;
+  --color-acent: #15132A;
+  --color-button: #a5d6eff0;
+}
+
+html {
+  scroll-behavior: smooth;
+}

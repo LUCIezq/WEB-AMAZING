@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+minimumReleaseAgeExclude:
+  - astro@7.2.7 || 7.3.2
+  - '@astrojs/markdown-satteri@0.4.1'
