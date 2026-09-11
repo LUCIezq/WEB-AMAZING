@@ -5,59 +5,67 @@ import { Image } from "astro:assets";
 import DisneyLayout from "../../layouts/DisneyLayout.astro";
 import Star from "../../components/icons/Star.astro";
 
-const { name, photo, subDestinations } = disney;
+const { name, photo, subDestinations, ctaButtons } = disney;
 const hotelCategories = ["económico", "moderado", "deluxe"] as const;
 ---
 
-<DisneyLayout title="">
-  <Image src={photo} alt="#" class="h-screen static" />
-
-  <div
-    class="absolute bottom-28 left-20 flex flex-col items-start justify-start gap-5"
-  >
-    <a
-      class="relative inline-flex gap-1 items-center justify-center
-                      align-middle select-none font-sans font-medium text-center
-                      px-5 py-2 text-white text-sm rounded-3xl bg-white/10 border border-white/50
-                     hover:bg-white/30 transition-all duration-300 before:absolute place-self-start
-                     before:inset-0 before:rounded-3xl before:bg-linear-to-br before:from-white/60
-                     before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none
-                     after:absolute after:inset-0 after:rounded-3xl after:bg-linear-to-br after:from-white/30 after:via-transparent after:to-transparent
-                      after:opacity-50 after:pointer-events-none antialiased"
-      href="/destinos"
-    >
-      <ArrowLeft />
-      Volver</a
-    >
-    <h1 class="font-display text-8xl pt-5 font-medium text-white">
-      {name}
-    </h1>
+<DisneyLayout title="Disney - Amazing Travel Agency">
+  <section class="relative isolate h-screen w-full overflow-hidden">
+    <Image
+      src={photo}
+      alt="Castillo mágico de Disney - Amazing Travel"
+      loading="eager"
+      class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+    />
+    <div class="absolute inset-0 z-0 bg-linear-to-t from-black/85 via-black/35 to-black/20"></div>
 
     <div
-      class="flex flex-wrap items-center justify-start gap-4"
-      aria-label="Seleccionar destino"
+      class="absolute bottom-12 md:bottom-20 left-6 md:left-14 lg:left-20 z-10 flex flex-col items-start justify-start gap-4 md:gap-5 max-w-4xl pr-6"
     >
-      {
-        subDestinations.map((e, index) => (
-          <button
-            type="button"
-            class:list={[
-              "subdestination-button inline-flex relative gap-1 font-instrument items-center justify-center cursor-pointer",
-              "align-middle select-none font-medium text-center px-5 py-2 text-white text-sm rounded-3xl border border-white/50 transition-all duration-300 before:absolute place-self-start before:inset-0 before:rounded-3xl before:bg-linear-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-3xl after:bg-linear-to-br after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none antialiased",
-              index === 0
-                ? "bg-white/80 !text-black"
-                : "bg-white/15 hover:bg-white/80 hover:text-black",
-            ]}
-            data-subdestination={e.id}
-            aria-controls={`subdestination-content-${e.id}`}
-            aria-pressed={index === 0}
-          >
-            {e.label}
-          </button>
-        ))
-      }
+      <a
+        class="relative inline-flex gap-1 items-center justify-center
+                        align-middle select-none font-sans font-medium text-center
+                        px-5 py-2 text-white text-sm rounded-3xl bg-white/15 border border-white/50
+                       hover:bg-white/30 transition-all duration-300 before:absolute place-self-start
+                       before:inset-0 before:rounded-3xl before:bg-linear-to-br before:from-white/60
+                       before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none
+                       after:absolute after:inset-0 after:rounded-3xl after:bg-linear-to-br after:from-white/30 after:via-transparent after:to-transparent
+                        after:opacity-50 after:pointer-events-none antialiased"
+        href="/destinos"
+      >
+        <ArrowLeft />
+        Volver a destinos</a
+      >
+      <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-white drop-shadow-md">
+        {name}
+      </h1>
+
+      <div
+        class="flex flex-wrap items-center justify-start gap-3 md:gap-4"
+        aria-label="Seleccionar destino"
+      >
+        {
+          subDestinations.map((e, index) => (
+            <button
+              type="button"
+              class:list={[
+                "subdestination-button inline-flex relative gap-1 font-instrument items-center justify-center cursor-pointer",
+                "align-middle select-none font-medium text-center px-5 py-2.5 text-white text-sm rounded-3xl border border-white/50 transition-all duration-300 before:absolute place-self-start before:inset-0 before:rounded-3xl before:bg-linear-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-3xl after:bg-linear-to-br after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none antialiased",
+                index === 0
+                  ? "bg-white/90 !text-black shadow-lg"
+                  : "bg-white/20 hover:bg-white/80 hover:text-black",
+              ]}
+              data-subdestination={e.id}
+              aria-controls={`subdestination-content-${e.id}`}
+              aria-pressed={index === 0}
+            >
+              {e.label}
+            </button>
+          ))
+        }
+      </div>
     </div>
-  </div>
+  </section>
 
   <div class="bg-white px-6 py-16 md:px-10 lg:px-20">
     {
@@ -162,6 +170,29 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
               })}
             </div>
           </div>
+
+          {ctaButtons && ctaButtons.length > 0 && (
+            <div class="mt-16 p-8 md:p-12 rounded-3xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div>
+                <h4 class="font-display text-2xl md:text-3xl font-bold text-acent">
+                  ¿Querés cotizar tu viaje a {subDestination.label}?
+                </h4>
+                <p class="mt-2 font-instrument text-gray-600">
+                  Te armamos un presupuesto personalizado sin costo adicional.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-4">
+                {ctaButtons.map((btn) => (
+                  <a
+                    href="/cotiza"
+                    class="bg-primary hover:bg-[#6e72c3] transition-colors text-white font-instrument font-semibold px-6 py-3 rounded-full text-center shadow-md"
+                  >
+                    {btn.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       ))
     }
