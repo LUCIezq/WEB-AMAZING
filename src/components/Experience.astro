@@ -9,46 +9,45 @@ const { experience } = homeData;
   class="relative w-full timeline-view text-center p-3 animate-blurred-fade-in animate-range-[entry_10%_contain_30%]"
 >
   <div
-    class="p-5 md:p-10 bg-primary flex flex-col gap-5 rounded-4xl text-white"
+    class="p-6 md:p-10 lg:p-12 bg-primary rounded-4xl text-white grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
   >
-    <div class="w-full flex flex-col gap-8">
-      <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-8 text-start">
+      <div class="flex flex-col gap-4">
         <div
-          class="flex flex-col md:flex-row border-b pb-4 items-center justify-center w-fit gap-3 border-white"
+          class="flex items-center border-b pb-4 gap-3 border-white/30"
         >
           <Stars />
-          <h5 class="text-title-md font-display font-semibold">
+          <h2 class="text-title-md font-display font-semibold">
             {experience.title}
-          </h5>
+          </h2>
         </div>
 
-        <p class="text-start font-instrument text-card-description max-w-xs">
+        <p class="font-instrument text-card-description text-white/90 max-w-md leading-relaxed">
           Hace <b>más de 8 años</b> ayudamos a familias y viajeros a planificar su
           experiencia ideal en Disney y Universal, con <b
             >atención personalizada, asesoría profesional y sin costo adicional.</b
           >
         </p>
       </div>
-      <div class="flex flex-col gap-3 font-instrument w-full">
-        <p class="text-start font-semibold md:max-w-72">
+      <div class="flex flex-col gap-4 font-instrument">
+        <p class="font-semibold text-subtitle-md">
           ¡Escribinos y empecemos a organizar tu <i>próxima aventura mágica!</i>
         </p>
         <a
-          class="bg-button md:place-self-start place-self-center rounded-3xl text-black font-bold py-3 px-6"
-          href="#">{experience.link}</a
+          class="bg-button hover:bg-white transition-colors duration-300 self-start rounded-3xl text-black font-bold py-3 px-6 shadow-md"
+          href="/planes-y-beneficios"
         >
+          {experience.link}
+        </a>
       </div>
     </div>
-    <video
-      autoplay
-      muted
-      loop
-      playsinline
-      poster="/videos/hero-poster.jpg"
-      class="md:absolute static md:max-w-lg top-36 rounded-2xl right-10"
-    >
-      <source src="/videos/hero-loop.webm" type="video/webm" />
-      <source src="/videos/hero-loop.mp4" type="video/mp4" />
-    </video>
+    <div class="relative w-full overflow-hidden rounded-2xl shadow-xl">
+      <img
+        src="/videos/hero-poster.jpg"
+        alt="Familias disfrutando su experiencia mágica en Disney y Universal"
+        class="w-full h-auto max-h-[380px] object-cover rounded-2xl"
+        loading="lazy"
+      />
+    </div>
   </div>
 </section>
