@@ -1,8 +1,8 @@
 ---
-import DisneyLayout from "../layouts/DisneyLayout.astro";
+import DisneyLayout from "../../layouts/DisneyLayout.astro";
 import { Image } from "astro:assets";
-import { atracciones } from "../data/Destinos";
-import ArrowRight from "../components/icons/Arrow-right.astro";
+import { destinos } from "../../data/Destinos";
+import ArrowRight from "../../components/icons/Arrow-right.astro";
 ---
 
 <DisneyLayout title="Destinos - Disney Amazing">
@@ -24,12 +24,11 @@ import ArrowRight from "../components/icons/Arrow-right.astro";
         que necesitás saber antes de cotizar.
       </p>
     </div>
-
     <div class="relative w-full pb-16">
       <div class="embla w-full overflow-hidden">
         <div class="embla__container flex gap-4 px-4">
           {
-            atracciones.map((a) => (
+            destinos.map((a) => (
               <div class="embla__slide flex-[0_0_75%] sm:flex-[0_0_45%] lg:flex-[0_0_25%] min-w-0">
                 <div class="relative rounded-3xl overflow-hidden aspect-2/3  shadow-xl">
                   <Image
@@ -48,7 +47,7 @@ import ArrowRight from "../components/icons/Arrow-right.astro";
                       {a.descripcion}
                     </p>
                     <a
-                      href={a.href}
+                      href={`/destinos/${a.id}`}
                       class="inline-flex gap-1 items-center justify-center 
                       align-middle select-none font-sans font-medium text-center 
                       px-5 py-3 text-white text-sm  rounded-3xl bg-white/10 border border-white/50 
@@ -86,7 +85,7 @@ import ArrowRight from "../components/icons/Arrow-right.astro";
 
   if (viewport && dotsContainer) {
     const embla = EmblaCarousel(viewport, { loop: true, align: "center" }, [
-      Autoplay({delay:2500}),
+      Autoplay({ delay: 2500 }),
     ]);
 
     const scrollSnaps = embla.scrollSnapList();

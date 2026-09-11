@@ -1,0 +1,28 @@
+---
+interface Props {
+  fill: string;
+  width?: string;
+  height?: string;
+}
+
+const { fill, width, height } = Astro.props;
+---
+
+<svg
+  width={width || "40"}
+  height={height || "40"}
+  viewBox="0 0 74 78"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g clip-path="url(#clip0_173_1070)">
+    <path
+      d="M36.21 77.18C28.81 58.33 22.64 47 0 40.21C24.35 33.45 33.56 19.16 35.93 0C40.49 21.45 49.47 35.22 73.84 39.99C52.03 45.52 44.64 55.48 36.22 77.18H36.21Z"
+      fill={fill}></path>
+  </g>
+  <defs>
+    <clipPath id="clip0_173_1070">
+      <rect width="73.84" height="77.18" fill="white"></rect>
+    </clipPath>
+  </defs>
+</svg>
