@@ -9,14 +9,21 @@ interface Props {
 const { href } = Astro.props;
 ---
 
-<div class="fixed grid gap-3 place-items-center right-10 bottom-10">
+<div class="fixed grid gap-3 place-items-center right-6 md:right-10 bottom-6 md:bottom-10 z-30">
   <a
-    href=`#${href}`
-    class="bg-acent grid place-content-center hover:bg-acent/90 rounded-full w-9 h-9"
+    href={`#${href}`}
+    aria-label="Volver arriba"
+    class="bg-acent grid place-content-center hover:bg-acent/90 rounded-full w-10 h-10 shadow-lg transition-transform hover:scale-105"
   >
     <ArrowUp />
   </a>
-  <a href="#">
+  <a
+    href="https://wa.me/5491112345678"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp a Amazing Travel"
+    class="hover:scale-105 transition-transform drop-shadow-lg"
+  >
     <WhatsappColour />
   </a>
 </div>
