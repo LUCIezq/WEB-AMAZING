@@ -26,6 +26,9 @@ importers:
       embla-carousel-autoplay:
         specifier: ^8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
+      sharp:
+        specifier: ^0.35.4
+        version: 0.35.4
       tailwind-animations:
         specifier: ^1.0.2
         version: 1.0.2(tailwindcss@4.3.3)
@@ -1913,8 +1916,7 @@ snapshots:
 
   '@fontsource-variable/playfair-display@5.3.0': {}
 
-  '@img/colour@1.1.0':
-    optional: true
+  '@img/colour@1.1.0': {}
 
   '@img/sharp-darwin-arm64@0.35.4':
     optionalDependencies:
@@ -2911,7 +2913,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.35.4
       '@img/sharp-win32-ia32': 0.35.4
       '@img/sharp-win32-x64': 0.35.4
-    optional: true
 
   shiki@4.4.3:
     dependencies:
