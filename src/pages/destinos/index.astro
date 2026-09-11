@@ -33,7 +33,7 @@ import ArrowRight from "../../components/icons/Arrow-right.astro";
                 <div class="relative rounded-3xl overflow-hidden aspect-2/3  shadow-xl">
                   <Image
                     src={a.foto}
-                    alt=""
+                    alt={`Destino ${a.nombre}`}
                     class="absolute inset-0 w-full h-full object-cover"
                   />
 
@@ -78,43 +78,45 @@ import ArrowRight from "../../components/icons/Arrow-right.astro";
   import EmblaCarousel from "embla-carousel";
   import Autoplay from "embla-carousel-autoplay";
 
-  const viewport = document.querySelector(".embla") as HTMLElement | null;
-  const dotsContainer = document.querySelector(
-    ".embla__dots",
-  ) as HTMLElement | null;
+  document.addEventListener("astro:page-load", () => {
+    const viewport = document.querySelector(".embla") as HTMLElement | null;
+    const dotsContainer = document.querySelector(
+      ".embla__dots",
+    ) as HTMLElement | null;
 
-  if (viewport && dotsContainer) {
-    const embla = EmblaCarousel(viewport, { loop: true, align: "center" }, [
-      Autoplay({ delay: 2500 }),
-    ]);
+    if (viewport && dotsContainer) {
+      const embla = EmblaCarousel(viewport, { loop: true, align: "center" }, [
+        Autoplay({ delay: 2500 }),
+      ]);
 
-    const scrollSnaps = embla.scrollSnapList();
-    dotsContainer.innerHTML = scrollSnaps
-      .map(
-        (_, i) =>
-          `<button class="embla__dot h-2 w-2 rounded-full bg-gray-300 transition-all duration-300" data-index="${i}"></button>`,
-      )
-      .join("");
+      const scrollSnaps = embla.scrollSnapList();
+      dotsContainer.innerHTML = scrollSnaps
+        .map(
+          (_, i) =>
+            `<button class="embla__dot h-2 w-2 rounded-full bg-gray-300 transition-all duration-300" data-index="${i}" aria-label="Ir al destino ${i + 1}"></button>`,
+        )
+        .join("");
 
-    const dots = Array.from(
-      dotsContainer.querySelectorAll(".embla__dot"),
-    ) as HTMLElement[];
+      const dots = Array.from(
+        dotsContainer.querySelectorAll(".embla__dot"),
+      ) as HTMLElement[];
 
-    const updateDots = () => {
-      const selected = embla.selectedScrollSnap();
+      const updateDots = () => {
+        const selected = embla.selectedScrollSnap();
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("bg-primary", i === selected);
+          dot.classList.toggle("w-6", i === selected);
+          dot.classList.toggle("bg-gray-300", i !== selected);
+        });
+      };
+
       dots.forEach((dot, i) => {
-        dot.classList.toggle("bg-primary", i === selected);
-        dot.classList.toggle("w-6", i === selected);
-        dot.classList.toggle("bg-gray-300", i !== selected);
+        dot.addEventListener("click", () => embla.scrollTo(i));
       });
-    };
 
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", () => embla.scrollTo(i));
-    });
-
-    embla.on("select", updateDots);
-    embla.on("init", updateDots);
-    embla.plugins().autoplay?.play();
-  }
+      embla.on("select", updateDots);
+      embla.on("init", updateDots);
+      embla.plugins().autoplay?.play();
+    }
+  });
 </script>
