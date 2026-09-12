@@ -110,7 +110,7 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
                 Hoteles
               </h3>
             </div>
-            <div class="flex flex-col gap-12">
+            <div class="flex flex-col  gap-12">
               {hotelCategories.map((category) => {
                 const hotels = subDestination.hotels.filter(
                   (hotel) => hotel.category === category,
@@ -118,40 +118,100 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
 
                 return hotels.length > 0 ? (
                   <div>
-                    <h4 class="mb-5 font-instrument uppercase text-subtitle-md font-semibold  text-primary">
+                    <h4 class="mb-5  font-instrument uppercase text-subtitle-md font-semibold  text-primary">
                       {category}
                     </h4>
                     <div
                       class="hotel-embla overflow-hidden"
                       data-hotel-carousel={`${subDestination.id}-${category}`}
                     >
-                      <div class="hotel-embla__container flex gap-5">
+                      <div class="hotel-embla__container flex items-stretch">
                         {hotels.map((hotel) => (
-                          <div class="hotel-embla__slide min-w-0 flex-[0_0_88%] sm:flex-[0_0_62%] lg:flex-[0_0_42%]">
-                            <article class="h-full rounded-2xl border border-gray-200 bg-gray-50 p-6">
-                              <div class="flex flex-wrap items-start justify-between gap-3">
-                                <h5 class="font-display text-2xl font-semibold text-acent">
-                                  {hotel.name}
-                                </h5>
-                                <span class="rounded-full bg-button px-3 py-1 font-instrument text-xs font-semibold capitalize text-acent">
+                          <div class="hotel-embla__slide mr-5 flex min-h-125 min-w-0 shrink-0 flex-[0_0_78%] sm:flex-[0_0_48%] lg:flex-[0_0_32%]">
+                            <article class="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white">
+                              <div class="group relative h-40 overflow-hidden">
+                                <Image
+                                  src={hotel.photo}
+                                  alt={hotel.name}
+                                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <span class="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 font-instrument text-xs font-semibold capitalize text-acent">
                                   {hotel.category}
                                 </span>
                               </div>
-                              <p class="mt-4 font-instrument leading-relaxed text-gray-600">
-                                {hotel.description}
-                              </p>
-                              <dl class="mt-5 grid gap-2 font-instrument text-sm text-gray-700">
-                                <div>
-                                  <dt class="font-semibold">Capacidad</dt>
-                                  <dd>{hotel.capacity}</dd>
-                                </div>
-                                {hotel.transport && (
-                                  <div>
-                                    <dt class="font-semibold">Transporte</dt>
-                                    <dd>{hotel.transport}</dd>
+                              <div class="flex flex-1 flex-col justify-between p-4 text-acent">
+                                <h5 class="font-display text-xl font-semibold leading-tight hover:underline">
+                                  {hotel.name}
+                                </h5>
+                                <dl class="mt-4  grid gap-5 font-instrument text-sm text-gray-600">
+                                  <div class="flex items-start gap-4">
+                                    <span class="flex shrink-0">
+                                      <Star width="12" fill="#7c80c4" />
+                                    </span>
+                                    <div class="flex flex-col">
+                                      <dt class="font-medium uppercase text-gray-700">
+                                        Capacidad
+                                      </dt>
+                                      <dd class="capacity-text text-acent">
+                                        {hotel.capacity}
+                                      </dd>
+                                    </div>
                                   </div>
-                                )}
-                              </dl>
+                                  {hotel.transport && (
+                                    <div class="flex items-start gap-4">
+                                      <span class="flex shrink-0">
+                                        <Star width="12" fill="#7c80c4" />
+                                      </span>
+                                      <div class="flex flex-col">
+                                        <dt class="font-medium text-gray-700 uppercase ">
+                                          Transporte
+                                        </dt>
+                                        <dd class="capacity-text text-acent">
+                                          {hotel.transport}
+                                        </dd>
+                                      </div>
+                                    </div>
+                                  )}
+                                  <div class="flex items-start gap-4">
+                                    <span class="flex shrink-0">
+                                      <Star width="12" fill="#EF90BB" />
+                                    </span>
+                                    <div class="flex flex-col">
+                                      <dt class="font-medium uppercase text-gray-700">
+                                        Early Park Admission
+                                      </dt>
+                                      <dd class="capacity-text text-acent">
+                                        {hotel.earlyParkAdmission}
+                                      </dd>
+                                    </div>
+                                  </div>
+                                </dl>
+                                <div class="mt-auto flex flex-wrap justify-center gap-2 pt-5">
+                                  <button
+                                    type="button"
+                                    class="hotel-details-toggle rounded-full bg-gray-200 px-8 py-2 font-instrument text-sm font-semibold text-gray-600 transition-colors hover:cursor-pointer hover:bg-acent hover:text-white"
+                                    aria-haspopup="dialog"
+                                    aria-controls="hotel-details-modal"
+                                    data-hotel-name={hotel.name}
+                                    data-hotel-category={hotel.category}
+                                    data-hotel-description={hotel.description}
+                                    data-hotel-capacity={hotel.capacity}
+                                    data-hotel-transport={hotel.transport ?? ""}
+                                    data-hotel-early-admission={hotel.earlyParkAdmission}
+                                  >
+                                    Ver más
+                                  </button>
+                                  <button
+                                    type="button"
+                                    class="cotiza-button relative rounded-full bg-primary px-12 py-2 font-instrument text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:rotate-1 hover:bg-linear-to-r hover:from-[#7c80c4] hover:via-[#a5d6ef] hover:to-[#7c80c4] hover:shadow-[0_0_24px_rgba(124,128,196,0.55)]"
+                                  >
+                                    <span class="cotiza-star cotiza-star-one" aria-hidden="true">✦</span>
+                                    <span class="cotiza-star cotiza-star-two" aria-hidden="true">✦</span>
+                                    <span class="cotiza-star cotiza-star-three" aria-hidden="true">✦</span>
+                                    Cotizá tu viaje
+                                  </button>
+                                </div>
+                              </div>
                             </article>
                           </div>
                         ))}
@@ -165,6 +225,84 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
         </section>
       ))
     }
+  </div>
+  <div
+    id="hotel-details-modal"
+    class="hotel-modal fixed inset-0 z-50 hidden items-center justify-center p-4"
+    aria-hidden="true"
+  >
+    <button
+      type="button"
+      class="hotel-modal-backdrop absolute inset-0 bg-black/45"
+      data-hotel-modal-close
+      aria-label="Cerrar modal"
+    ></button>
+    <article
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="hotel-modal-title"
+      class="hotel-modal-panel relative z-10 max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-gray-200 bg-white p-6 md:p-8"
+    >
+      <button
+        type="button"
+        class="absolute right-4 cursor-pointer top-4 rounded-full border border-gray-300 px-3 py-1 font-instrument text-sm text-gray-600 transition-colors hover:bg-gray-100"
+        data-hotel-modal-close
+      >
+        Cerrar
+      </button>
+      <span
+        id="hotel-modal-category"
+        class="inline-flex rounded-full bg-button px-3 py-1 font-instrument text-xs font-semibold capitalize text-acent"
+      ></span>
+      <h3
+        id="hotel-modal-title"
+        class="mt-4 font-display text-3xl font-semibold text-acent"
+      ></h3>
+      <p
+        id="hotel-modal-description"
+        class="mt-4 font-instrument text-base leading-relaxed text-gray-700"
+      ></p>
+      <dl class="mt-6 grid gap-5 font-instrument text-sm text-gray-700">
+        <div class="flex items-start gap-4">
+          <span class="flex shrink-0">
+            <Star width="12" fill="#7c80c4" />
+          </span>
+          <div class="flex flex-col">
+            <dt class="font-medium uppercase text-gray-700">Capacidad</dt>
+            <dd id="hotel-modal-capacity" class="text-acent"></dd>
+          </div>
+        </div>
+        <div id="hotel-modal-transport-row" class="flex items-start gap-4">
+          <span class="flex shrink-0">
+            <Star width="12" fill="#7c80c4" />
+          </span>
+          <div class="flex flex-col">
+            <dt class="font-medium uppercase text-gray-700">Transporte</dt>
+            <dd id="hotel-modal-transport" class="text-acent"></dd>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex shrink-0">
+            <Star width="12" fill="#EF90BB" />
+          </span>
+          <div class="flex flex-col">
+            <dt class="font-medium uppercase text-gray-700">
+              Early Park Admission
+            </dt>
+            <dd id="hotel-modal-early-admission" class="text-acent"></dd>
+          </div>
+        </div>
+      </dl>
+      <button
+        type="button"
+        class="cotiza-button modal-quote-button relative mt-8 w-full rounded-full bg-primary px-12 py-3 font-instrument text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:rotate-1 hover:bg-linear-to-r hover:from-[#7c80c4] hover:via-[#a5d6ef] hover:to-[#7c80c4] hover:shadow-[0_0_24px_rgba(124,128,196,0.55)]"
+      >
+        <span class="cotiza-star cotiza-star-one" aria-hidden="true">✦</span>
+        <span class="cotiza-star cotiza-star-two" aria-hidden="true">✦</span>
+        <span class="cotiza-star cotiza-star-three" aria-hidden="true">✦</span>
+        Cotizá tu viaje
+      </button>
+    </article>
   </div>
 </DisneyLayout>
 
@@ -185,6 +323,84 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
         }),
       ]),
     );
+
+    const detailButtons = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(".hotel-details-toggle"),
+    );
+    const modal = document.getElementById("hotel-details-modal");
+    const modalTitle = document.getElementById("hotel-modal-title");
+    const modalCategory = document.getElementById("hotel-modal-category");
+    const modalDescription = document.getElementById("hotel-modal-description");
+    const modalCapacity = document.getElementById("hotel-modal-capacity");
+    const modalTransport = document.getElementById("hotel-modal-transport");
+    const modalEarlyAdmission = document.getElementById(
+      "hotel-modal-early-admission",
+    );
+    const modalTransportRow = document.getElementById(
+      "hotel-modal-transport-row",
+    );
+    const modalCloseButtons = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-hotel-modal-close]"),
+    );
+
+    const closeHotelModal = () => {
+      if (!modal) {
+        return;
+      }
+
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modal.classList.remove("hotel-modal-visible");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("hotel-modal-open");
+    };
+
+    detailButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (
+          !modal ||
+          !modalTitle ||
+          !modalCategory ||
+          !modalDescription ||
+          !modalCapacity ||
+          !modalTransport ||
+          !modalEarlyAdmission ||
+          !modalTransportRow
+        ) {
+          return;
+        }
+
+        const { hotelName, hotelCategory, hotelDescription, hotelCapacity } =
+          button.dataset;
+        const transport = button.dataset.hotelTransport?.trim() ?? "";
+        const earlyAdmission = button.dataset.hotelEarlyAdmission ?? "";
+
+        modalTitle.textContent = hotelName ?? "";
+        modalCategory.textContent = hotelCategory ?? "";
+        modalDescription.textContent = hotelDescription ?? "";
+        modalCapacity.textContent = hotelCapacity ?? "";
+        modalEarlyAdmission.textContent = earlyAdmission;
+
+        modalTransportRow.classList.toggle("hidden", !transport);
+        modalTransport.textContent = transport;
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        modal.classList.add("hotel-modal-visible");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("hotel-modal-open");
+      });
+    });
+
+    modalCloseButtons.forEach((button) => {
+      button.addEventListener("click", closeHotelModal);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeHotelModal();
+      }
+    });
 
     const buttons = Array.from(
       document.querySelectorAll<HTMLButtonElement>(".subdestination-button"),
@@ -227,5 +443,116 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
 <style>
   .subdestination-button[aria-pressed="true"] {
     color: #000;
+  }
+
+  .capacity-text {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  :global(body.hotel-modal-open) {
+    overflow: hidden;
+  }
+
+  .hotel-modal-backdrop {
+    opacity: 0;
+  }
+
+  .hotel-modal-panel {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.96);
+  }
+
+  .hotel-modal-visible .hotel-modal-backdrop {
+    animation: hotel-modal-backdrop-in 220ms ease-out forwards;
+  }
+
+  .hotel-modal-visible .hotel-modal-panel {
+    animation: hotel-modal-panel-in 320ms cubic-bezier(0.16, 1, 0.3, 1)
+      forwards;
+  }
+
+  @keyframes hotel-modal-backdrop-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes hotel-modal-panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(1rem) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .cotiza-button {
+    isolation: isolate;
+  }
+
+  .cotiza-star {
+    position: absolute;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 1.15rem;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow:
+      0 0 4px #a5d6ef,
+      0 0 10px #7c80c4;
+    transform: scale(0.4);
+  }
+
+  .cotiza-star-one {
+    top: -0.55rem;
+    right: 1.1rem;
+  }
+
+  .cotiza-star-two {
+    bottom: -0.4rem;
+    left: 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .cotiza-star-three {
+    top: 0.1rem;
+    left: -0.65rem;
+    font-size: 0.8rem;
+  }
+
+  .cotiza-button:hover .cotiza-star {
+    animation: disney-sparkle 850ms ease-out forwards;
+  }
+
+  .cotiza-button:hover .cotiza-star-two {
+    animation-delay: 120ms;
+  }
+
+  .cotiza-button:hover .cotiza-star-three {
+    animation-delay: 220ms;
+  }
+
+  @keyframes disney-sparkle {
+    0% {
+      opacity: 0;
+      transform: scale(0.4) rotate(0deg);
+    }
+    35% {
+      opacity: 1;
+      transform: scale(1.25) rotate(20deg);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.8) rotate(45deg) translateY(-0.35rem);
+    }
   }
 </style>
