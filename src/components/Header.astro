@@ -5,11 +5,11 @@ import SocialIcon from "./SocialIcon.astro";
 import Nav from "./Nav.astro";
 ---
 
-<header class="z-20 bg-white fixed left-0 right-0">
-  <div class="bg-primary flex justify-between items-center px-4 py-2">
+<header class="fixed left-0 right-0 z-50 bg-white">
+  <div class="flex items-center justify-between gap-3 bg-primary px-4 py-2 text-xs sm:text-sm">
     <a
       href="mailto:hola@amazingtravel.com"
-      class="hover:text-violet-600 transition text-white"
+      class="truncate text-white transition hover:text-violet-600"
     >
       hola@amazingtravel.com
     </a>
@@ -30,9 +30,9 @@ import Nav from "./Nav.astro";
       </ul>
     </div>
   </div>
-  <div class="relative flex items-center justify-between p-5">
+  <div class="relative flex items-center justify-between gap-4 p-4 sm:p-5">
     <a href="/" aria-label="Ir al inicio">
-      <Image width={120} src={logo} alt="Logo de la marca" priority />
+      <Image width={120} src={logo} alt="Logo de la marca" class="w-24 sm:w-[120px]" priority />
     </a>
     <Nav />
     <button
