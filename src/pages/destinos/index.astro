@@ -3,10 +3,12 @@ import DisneyLayout from "../../layouts/DisneyLayout.astro";
 import { Image } from "astro:assets";
 import { destinos } from "../../data/Destinos";
 import ArrowRight from "../../components/icons/Arrow-right.astro";
+import TopUp from "../../components/TopUp.astro";
 ---
 
 <DisneyLayout title="Destinos - Disney Amazing">
   <div
+    id="top"
     class="flex w-full flex-col items-center justify-center gap-10 px-4 pt-32 text-center sm:px-6 sm:pt-40"
   >
     <div class="grid place-items-center">
@@ -74,6 +76,7 @@ import ArrowRight from "../../components/icons/Arrow-right.astro";
       <div class="embla__dots flex justify-center gap-2 mt-6"></div>
     </div>
   </div>
+  <TopUp href="top" />
 </DisneyLayout>
 
 <style>

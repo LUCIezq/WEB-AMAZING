@@ -4,13 +4,14 @@ import ArrowLeft from "../../components/icons/ArrowLeft.astro";
 import { Image } from "astro:assets";
 import DisneyLayout from "../../layouts/DisneyLayout.astro";
 import Star from "../../components/icons/Star.astro";
+import TopUp from "../../components/TopUp.astro";
 
 const { name, photo, subDestinations } = disney;
 const hotelCategories = ["económico", "moderado", "deluxe"] as const;
 ---
 
 <DisneyLayout title="">
-  <div class="relative min-h-[100svh]">
+  <div id="top" class="relative min-h-[100svh]">
     <Image
       src={photo}
       alt="#"
@@ -338,6 +339,7 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
       </button>
     </article>
   </div>
+  <TopUp href="top" />
 </DisneyLayout>
 
 <script>
