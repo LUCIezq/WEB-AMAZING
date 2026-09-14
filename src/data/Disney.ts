@@ -57,25 +57,25 @@ export type Parktype = "Temático" | "Acuático";
 
 const disneyOrlando: SubDestination = {
   id: "orlando",
-  label: "Orlando Walt Disney World",
+  label: "Walt Disney World",
   parksCount: "4 + 2 de Agua",
   parks: [
-    { id: "epcot", name: "EPCOT", type: "Temático", photo: epcot },
+    { id: "epcot", name: "Disney's Epcot", type: "Temático", photo: epcot },
     {
       id: "magic-kingdom",
-      name: "Magic Kingdom",
+      name: "Disney's Magic Kingdom",
       type: "Temático",
       photo: magicKingdom,
     },
     {
       id: "hollywood-studios",
-      name: "Hollywood Studios",
+      name: "Disney's Hollywood Studios",
       type: "Temático",
       photo: hollywoodStudios,
     },
     {
       id: "animal-kingdom",
-      name: "Animal Kingdom",
+      name: "Disney's Animal Kingdom",
       type: "Temático",
       photo: animalKingdom,
     },
@@ -295,7 +295,7 @@ const disneyOrlando: SubDestination = {
 
 const disneyCalifornia: SubDestination = {
   id: "california",
-  label: "California Disneyland",
+  label: "Disneyland California ",
   parksCount: "2",
   parks: [
     {
