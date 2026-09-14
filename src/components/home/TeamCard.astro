@@ -35,11 +35,13 @@ const { id, nombre, descripcion, imagen } = Astro.props;
     >
     <h3
       id={id}
-      class="mb-1 translate-y-3 text-card-title font-instrument font-semibold uppercase text-white opacity-0 transition-all delay-75 duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+      class="mb-4 translate-y-3 text-card-title font-instrument font-semibold text-white opacity-0 transition-all delay-75 duration-500 group-hover:translate-y-0 group-hover:opacity-100"
     >
-      {nombre}
+      {nombre}<span class="font-light text-subtitle-lg"> | Co-Founder </span>
     </h3>
-    <p class="translate-y-3 text-card-description text-white/90 opacity-0 transition-all delay-150 duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+    <p
+      class="translate-y-3 text-card-description font-normal text-white/90 opacity-0 transition-all delay-150 duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+    >
       {descripcion}
     </p>
   </div>
