@@ -103,20 +103,48 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
             </div>
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {subDestination.parks.map((park) => (
-                <article class="group relative min-h-48 min-w-28 overflow-hidden rounded-2xl">
+                <article
+                  class="group relative min-h-48 min-w-28 overflow-hidden rounded-2xl"
+                  aria-labelledby={`park-${park.id}`}
+                >
                   <Image
                     src={park.photo}
                     alt={park.name}
-                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
                   />
                   <div class="absolute inset-0 bg-linear-to-t from-black/85 via-black/20 to-transparent" />
-                  <div class="relative flex h-full min-h-48 flex-col justify-end gap-1 p-4 text-white">
-                    <h4 class="mt-2 font-display text-card-title font-semibold">
+                  <div class="relative flex h-full min-h-48 flex-col justify-end gap-1 p-4 text-white transition-opacity duration-300 group-hover:opacity-0">
+                    <h4
+                      id={`park-${park.id}`}
+                      class="mt-2 font-display text-card-title font-semibold"
+                    >
                       {park.name}
                     </h4>
                     <span class="font-instrument text-xs font-semibold uppercase tracking-wide">
                       Parque {park.type}
                     </span>
+                  </div>
+                  <div class="absolute inset-0 flex translate-y-4 flex-col justify-end bg-linear-to-t from-acent/95 via-primary/85 to-primary/55 p-5 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+                    <span
+                      class="pointer-events-none absolute right-5 top-4 text-2xl text-white opacity-0 drop-shadow-[0_0_8px_#a5d6ef] transition-all duration-500 group-hover:rotate-12 group-hover:opacity-100"
+                      aria-hidden="true"
+                    >
+                      ✦
+                    </span>
+                    <span
+                      class="pointer-events-none absolute right-10 top-10 text-sm text-button opacity-0 drop-shadow-[0_0_6px_#7c80c4] transition-all delay-100 duration-500 group-hover:-translate-y-1 group-hover:opacity-100"
+                      aria-hidden="true"
+                    >
+                      ✦
+                    </span>
+                    <h4 class="mb-2 translate-y-3 font-display text-card-title font-semibold text-white opacity-0 transition-all delay-75 duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                      {park.name}
+                    </h4>
+                    <p class="translate-y-3 font-instrument text-sm leading-snug text-white/90 opacity-0 transition-all delay-150 duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Inventore ducimus dolorem perspiciatis ipsam facere et
+                      ullam
+                    </p>
                   </div>
                   <div class="absolute top-2 left-4">
                     <Star fill="white" width="15" />
