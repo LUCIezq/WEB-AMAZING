@@ -1,14 +1,14 @@
 import type { ImageMetadata } from "astro";
-import disneyHero from "../assets/destinos/disney-background.jpg";
-import disneyDestination from "../assets/destinos/disney.jpg";
-import parks from "../assets/parks.jpg";
-import epcot from "../assets/destinos/parks/epcot.jpg";
-import magicKingdom from "../assets/destinos/parks/magic-kingdom.jpg";
-import hollywoodStudios from "../assets/destinos/parks/hollywood-studios.jpg";
-import animalKingdom from "../assets/destinos/parks/animal-kingdom.jpg";
-import blizzardBeach from "../assets/destinos/parks/blizzard-beach.jpg";
-import typhoonBeach from "../assets/destinos/parks/typhoon-beach.jpg";
-import demoHotel from "../assets/destinos/hotels/demo-hotel.jpg";
+import disneyHero from "@assets/destinos/disney-background.jpg";
+import disneyDestination from "@assets/destinos/disney.jpg";
+import parks from "@assets/home/parks.jpg";
+import epcot from "@assets/destinos/parks/epcot.jpg";
+import magicKingdom from "@assets/destinos/parks/magic-kingdom.jpg";
+import hollywoodStudios from "@assets/destinos/parks/hollywood-studios.jpg";
+import animalKingdom from "@assets/destinos/parks/animal-kingdom.jpg";
+import blizzardBeach from "@assets/destinos/parks/blizzard-beach.jpg";
+import typhoonBeach from "@assets/destinos/parks/typhoon-beach.jpg";
+import demoHotel from "@assets/destinos/hotels/demo-hotel.jpg";
 
 export type HotelCategory = "económico" | "moderado" | "deluxe";
 

@@ -1,11 +1,11 @@
 ---
-import DisneyLayout from "../../layouts/DisneyLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import { destinos } from "../../data/Destinos";
-import ArrowRight from "../../components/icons/Arrow-right.astro";
+import { destinos } from "@data/Destinos";
+import ArrowRight from "@components/icons/ArrowRight.astro";
 ---
 
-<DisneyLayout title="Destinos - Disney Amazing">
+<BaseLayout title="Destinos - Disney Amazing">
   <div
     class="flex w-full flex-col items-center justify-center gap-10 px-4 pt-32 text-center sm:px-6 sm:pt-40"
   >
@@ -74,7 +74,7 @@ import ArrowRight from "../../components/icons/Arrow-right.astro";
       <div class="embla__dots flex justify-center gap-2 mt-6"></div>
     </div>
   </div>
-</DisneyLayout>
+</BaseLayout>
 
 <style>
   .destination-card {

@@ -1,15 +1,15 @@
 ---
-import { disney } from "../../data/Disney";
-import ArrowLeft from "../../components/icons/ArrowLeft.astro";
+import { disney } from "@data/Disney";
+import ArrowLeft from "@components/icons/ArrowLeft.astro";
 import { Image } from "astro:assets";
-import DisneyLayout from "../../layouts/DisneyLayout.astro";
-import Star from "../../components/icons/Star.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Star from "@components/icons/Star.astro";
 
 const { name, photo, subDestinations, ctaButtons } = disney;
 const hotelCategories = ["económico", "moderado", "deluxe"] as const;
 ---
 
-<DisneyLayout title="Disney - Amazing Travel Agency">
+<BaseLayout title="Disney - Amazing Travel Agency">
   <section class="relative min-h-[100svh] w-full overflow-hidden">
     <Image
       src={photo}
@@ -364,7 +364,7 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
       </button>
     </article>
   </div>
-</DisneyLayout>
+</BaseLayout>
 
 <script>
   import EmblaCarousel from "embla-carousel";

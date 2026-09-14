@@ -1,6 +1,6 @@
-import marcela from "../assets/team/Marce.jpg";
-import majo from "../assets/team/Majo.jpg";
-import cecilia from "../assets/team/Ceci.jpg";
+import marcela from "@assets/team/Marce.jpg";
+import majo from "@assets/team/Majo.jpg";
+import cecilia from "@assets/team/Ceci.jpg";
 import type { ImageMetadata } from "astro";
 
 interface TeamInfo {

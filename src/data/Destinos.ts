@@ -1,9 +1,9 @@
 import type { ImageMetadata } from "astro";
-import disney from "../assets/destinos/disney.jpg";
-import universal from "../assets/destinos/universal.jpg";
-import cruceros from "../assets/destinos/cruceros.jpg";
-import otrosTickets from "../assets/destinos/otros-tickets.jpg";
-import otrosDestinos from "../assets/destinos/otros-destinos.jpg";
+import disney from "@assets/destinos/disney.jpg";
+import universal from "@assets/destinos/universal.jpg";
+import cruceros from "@assets/destinos/cruceros.jpg";
+import otrosTickets from "@assets/destinos/otros-tickets.jpg";
+import otrosDestinos from "@assets/destinos/otros-destinos.jpg";
 
 interface destino {
   id: string;
