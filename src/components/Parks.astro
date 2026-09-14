@@ -19,9 +19,9 @@ const { parks } = homeData;
         {parks.eyebrow}
       </span>
       <div class="grid gap-2">
-        <h6 class="font-display text-title-md font-semibold">
+        <h2 class="font-display text-title-md font-semibold">
           {parks.title}
-        </h6>
+        </h2>
         <p class="font-instrument font-medium">
           El castillo de Disney y el castillo de Hogwarts en un mismo
           itinerario. <b>Combinamos parques, hoteles y tickets </b> para que vivas
@@ -31,9 +31,10 @@ const { parks } = homeData;
     </div>
 
     <a
-      href={parks.linkUrl}
-      class="place-self-center rounded-4xl bg-primary px-5 py-3 font-instrument font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-linear-to-r hover:from-primary hover:via-button hover:to-primary hover:text-acent hover:shadow-[0_0_24px_rgba(124,128,196,0.55)] md:place-self-start"
-      >{parks.linkText}</a
+      href="/cotiza"
+      class="bg-primary hover:bg-[#6e72c3] transition-colors text-white font-semibold place-self-center md:place-self-start font-instrument py-3 px-5 rounded-4xl shadow-md"
     >
+      {parks.linkText}
+    </a>
   </div>
 </section>

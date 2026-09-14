@@ -1,5 +1,5 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import logo from "../assets/logo.svg";
 import SocialIcon from "./SocialIcon.astro";
 import Nav from "./Nav.astro";
@@ -32,12 +32,12 @@ import Nav from "./Nav.astro";
   </div>
   <div class="relative flex items-center justify-between gap-4 p-4 sm:p-5">
     <a href="/" aria-label="Ir al inicio">
-      <Image width={120} src={logo} alt="Logo de la marca" class="w-24 sm:w-[120px]" priority />
+      <Image width={120} src={logo} alt="Logo de Amazing Travel" class="w-24 sm:w-[120px]" loading="eager" />
     </a>
     <Nav />
     <button
       id="menu-toggle"
-      class="md:hidden flex flex-col gap-1.5"
+      class="md:hidden flex flex-col gap-1.5 cursor-pointer"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="main-nav"
@@ -50,11 +50,20 @@ import Nav from "./Nav.astro";
 </header>
 
 <script>
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("main-nav");
+  document.addEventListener("astro:page-load", () => {
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.getElementById("main-nav");
 
-  toggle?.addEventListener("click", () => {
-    const isOpen = nav?.classList.toggle("hidden");
-    toggle.setAttribute("aria-expanded", String(!isOpen));
+    toggle?.addEventListener("click", () => {
+      const isHidden = nav?.classList.toggle("hidden");
+      toggle.setAttribute("aria-expanded", String(!isHidden));
+    });
+
+    nav?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.add("hidden");
+        toggle?.setAttribute("aria-expanded", "false");
+      });
+    });
   });
 </script>

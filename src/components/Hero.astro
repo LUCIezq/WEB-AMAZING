@@ -8,28 +8,22 @@ const { hero } = homeData;
 ---
 
 <section class="relative isolate min-h-[100svh] w-full overflow-hidden">
-  <picture>
-    <source
-      media="(min-width: 768px)"
-      srcset="../assets/background-hero-desktop.jpg"
-    />
-    <Image
-      src={backgroundHero}
-      alt=""
-      priority
-      class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
-    />
-  </picture>
+  <Image
+    src={backgroundHero}
+    alt="Castillo de Disney iluminado - Amazing Travel"
+    loading="eager"
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+  />
 
   <div class="absolute inset-0 z-0 bg-black/45"></div>
   <div
     class="absolute inset-0 z-10 flex w-full flex-col items-center justify-center gap-6 px-4 pb-12 text-center text-white sm:gap-8 sm:px-6"
   >
-    <h2
+    <h1
       class="max-w-2xl text-wrap font-display text-4xl font-bold leading-tight sm:text-title-lg md:text-hero-title"
     >
       {hero.title}
-    </h2>
+    </h1>
     <div class="border border-white opacity-60 w-full max-w-80 md:max-w-3xl">
     </div>
     <h3 class="text-center font-instrument text-base font-semibold sm:text-subtitle-lg">
