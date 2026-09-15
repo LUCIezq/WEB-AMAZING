@@ -175,7 +175,7 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
                     >
                       <div class="hotel-embla__container flex items-stretch">
                         {hotels.map((hotel) => (
-                          <div class="hotel-embla__slide mr-5 flex min-h-125 min-w-0 shrink-0 flex-[0_0_78%] sm:flex-[0_0_48%] lg:flex-[0_0_32%]">
+                          <div class="hotel-embla__slide mr-5 flex min-h-125 min-w-0 shrink-0 flex-[0_0_86%] sm:flex-[0_0_56%] lg:flex-[0_0_36%]">
                             <article class="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white">
                               <div class="group relative h-40 overflow-hidden">
                                 <Image
@@ -234,12 +234,13 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
                                     </div>
                                   </div>
                                 </dl>
-                                <div class="mt-auto flex flex-wrap justify-center gap-2 pt-5">
+                                <div class="mt-auto grid grid-cols-1 gap-2 pt-5 sm:grid-cols-[auto_1fr_1fr]">
                                   <button
                                     type="button"
-                                    class="hotel-details-toggle rounded-full bg-gray-200 px-8 py-2 font-instrument text-sm font-semibold text-gray-600 transition-colors hover:cursor-pointer hover:bg-acent hover:text-white"
+                                    class="hotel-details-toggle inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-200 p-0 font-instrument text-sm font-semibold text-gray-600 transition-colors hover:cursor-pointer hover:bg-acent hover:text-white"
                                     aria-haspopup="dialog"
                                     aria-controls="hotel-details-modal"
+                                    aria-label={`Ver detalles de ${hotel.name}`}
                                     data-hotel-name={hotel.name}
                                     data-hotel-image={hotel.photo.src}
                                     data-hotel-category={hotel.category}
@@ -250,32 +251,36 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
                                       hotel.earlyParkAdmission
                                     }
                                   >
-                                    Ver más
+                                    <svg
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      stroke-width="1.8"
+                                      class="h-4 w-4"
+                                      aria-hidden="true"
+                                    >
+                                      <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
+                                      <circle cx="12" cy="12" r="2.5" />
+                                    </svg>
                                   </button>
-                                  <button
-                                    type="button"
-                                    class="cotiza-button relative rounded-full bg-primary px-12 py-2 font-instrument text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:rotate-1 hover:bg-linear-to-r hover:from-[#7c80c4] hover:via-[#a5d6ef] hover:to-[#7c80c4] hover:shadow-[0_0_24px_rgba(124,128,196,0.55)]"
+                                  <a
+                                    href="/cotiza?tipo=paquete"
+                                    class="cotiza-button package-quote-button relative inline-flex items-center justify-center rounded-full bg-acent px-3 py-2 text-center font-instrument text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-acent/85 hover:shadow-md"
                                   >
-                                    <span
-                                      class="cotiza-star cotiza-star-one"
-                                      aria-hidden="true"
-                                    >
-                                      ✦
-                                    </span>
-                                    <span
-                                      class="cotiza-star cotiza-star-two"
-                                      aria-hidden="true"
-                                    >
-                                      ✦
-                                    </span>
-                                    <span
-                                      class="cotiza-star cotiza-star-three"
-                                      aria-hidden="true"
-                                    >
-                                      ✦
-                                    </span>
-                                    Cotizá tu viaje
-                                  </button>
+                                    <span class="cotiza-star cotiza-star-one" aria-hidden="true">✦</span>
+                                    <span class="cotiza-star cotiza-star-two" aria-hidden="true">✦</span>
+                                    <span class="cotiza-star cotiza-star-three" aria-hidden="true">✦</span>
+                                    Cotizá tu paquete
+                                  </a>
+                                  <a
+                                    href="/cotiza?tipo=tickets"
+                                    class="cotiza-button tickets-quote-button relative inline-flex items-center justify-center rounded-full bg-primary px-3 py-2 text-center font-instrument text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#6e72c3] hover:shadow-md"
+                                  >
+                                    <span class="cotiza-star cotiza-star-one" aria-hidden="true">✦</span>
+                                    <span class="cotiza-star cotiza-star-two" aria-hidden="true">✦</span>
+                                    <span class="cotiza-star cotiza-star-three" aria-hidden="true">✦</span>
+                                    Cotizá tus tickets
+                                  </a>
                                 </div>
                               </div>
                             </article>
@@ -329,7 +334,7 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
       role="dialog"
       aria-modal="true"
       aria-labelledby="hotel-modal-title"
-      class="hotel-modal-panel relative z-10 max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-gray-200 bg-white"
+      class="hotel-modal-panel relative z-10 mx-auto max-h-[85vh] w-full max-w-2xl self-center overflow-y-auto rounded-3xl border border-gray-200 bg-white"
     >
       <div class="relative">
         <img
@@ -397,15 +402,45 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
           >
           </p>
         </div>
-        <button
-          type="button"
-          class="cotiza-button modal-quote-button relative mt-8 w-full rounded-full bg-primary px-12 py-3 font-instrument text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:rotate-1 hover:bg-linear-to-r hover:from-[#7c80c4] hover:via-[#a5d6ef] hover:to-[#7c80c4] hover:shadow-[0_0_24px_rgba(124,128,196,0.55)]"
-        >
-          <span class="cotiza-star cotiza-star-one" aria-hidden="true">✦</span>
-          <span class="cotiza-star cotiza-star-two" aria-hidden="true">✦</span>
-          <span class="cotiza-star cotiza-star-three" aria-hidden="true">✦</span>
-          Cotizá tu viaje
-        </button>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-2 pt-5">
+          <button
+            type="button"
+            class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-200 p-0 font-instrument text-sm font-semibold text-gray-600 transition-colors hover:bg-acent hover:text-white"
+            data-hotel-modal-close
+            aria-label="Cerrar detalles del hotel"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="h-4 w-4"
+              aria-hidden="true"
+            >
+              <path d="m3 3 18 18" />
+              <path d="M10.6 5.1A10.8 10.8 0 0 1 12 5c6 0 9.5 7 9.5 7a17.5 17.5 0 0 1-3.1 3.8M6.2 6.2C3.7 7.8 2.5 12 2.5 12s3.5 7 9.5 7a10.4 10.4 0 0 0 3.2-.5" />
+              <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+            </svg>
+          </button>
+          <a
+            href="/cotiza?tipo=paquete"
+            class="cotiza-button package-quote-button relative inline-flex min-w-48 items-center justify-center rounded-full bg-acent px-3 py-3 text-center font-instrument text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-acent/85 hover:shadow-md"
+          >
+            <span class="cotiza-star cotiza-star-one" aria-hidden="true">✦</span>
+            <span class="cotiza-star cotiza-star-two" aria-hidden="true">✦</span>
+            <span class="cotiza-star cotiza-star-three" aria-hidden="true">✦</span>
+            Cotizá tu paquete
+          </a>
+          <a
+            href="/cotiza?tipo=tickets"
+            class="cotiza-button tickets-quote-button relative inline-flex min-w-48 items-center justify-center rounded-full bg-primary px-3 py-3 text-center font-instrument text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#6e72c3] hover:shadow-md"
+          >
+            <span class="cotiza-star cotiza-star-one" aria-hidden="true">✦</span>
+            <span class="cotiza-star cotiza-star-two" aria-hidden="true">✦</span>
+            <span class="cotiza-star cotiza-star-three" aria-hidden="true">✦</span>
+            Cotizá tus tickets
+          </a>
+        </div>
       </div>
     </article>
   </div>
@@ -672,6 +707,14 @@ const hotelCategories = ["económico", "moderado", "deluxe"] as const;
 
   .cotiza-button:hover .cotiza-star-three {
     animation-delay: 220ms;
+  }
+
+  .package-quote-button:hover {
+    box-shadow: 0 0 24px rgb(21 19 42 / 0.45);
+  }
+
+  .tickets-quote-button:hover {
+    box-shadow: 0 0 24px rgb(124 128 196 / 0.55);
   }
 
   @keyframes disney-sparkle {
