@@ -5,6 +5,7 @@ import "@styles/global.css";
 import "@fontsource-variable/playfair-display/wght.css";
 import "@fontsource-variable/instrument-sans/wght.css";
 import { ClientRouter } from "astro:transitions";
+import Cursor from "@/components/common/Cursor.astro";
 
 interface Props {
   title: string;
@@ -24,6 +25,7 @@ const { title } = Astro.props;
   <body id="top" class="min-h-screen flex flex-col">
     <Header />
     <main class="flex-1">
+      <Cursor />
       <slot />
     </main>
     <Footer />

@@ -1,0 +1,66 @@
+---
+
+---
+
+<div id="sparkle-layer"></div>
+
+<style>
+  #sparkle-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  :global(.sparkle) {
+    position: fixed;
+    pointer-events: none;
+    will-change: transform, opacity;
+    animation: sparkleFade 0.8s ease-out forwards;
+  }
+
+  @keyframes sparkleFade {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0.7);
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -150%) scale(1.5);
+    }
+  }
+</style>
+
+<script>
+  const LAYER = document.getElementById("sparkle-layer");
+  const COLORS = ["#7C80C4", "#F3A9CA"];
+  const GLYPH = "✦";
+  const THROTTLE = 70;
+  const LIFE = 850;
+  const MIN_WIDTH = 900;
+
+  let last = 0;
+
+  function onMove(e) {
+    if (window.innerWidth < MIN_WIDTH) return;
+    const now = Date.now();
+    if (now - last < THROTTLE) return;
+    last = now;
+
+    const el = document.createElement("div");
+    el.className = "sparkle";
+    el.textContent = GLYPH;
+    el.style.left = `${e.clientX + (Math.random() * 14 - 7)}px`;
+    el.style.top = `${e.clientY + (Math.random() * 14 - 7)}px`;
+    el.style.fontSize = `${7 + Math.random() * 8}px`;
+    el.style.color = COLORS[Math.random() > 0.5 ? 0 : 1];
+
+    LAYER?.appendChild(el);
+    setTimeout(() => el.remove(), LIFE);
+  }
+
+  window.addEventListener("mousemove", onMove);
+</script>
