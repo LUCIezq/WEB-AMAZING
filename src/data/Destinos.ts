@@ -17,35 +17,35 @@ export const destinos: destino[] = [
     id: "disney",
     nombre: "Disney",
     descripcion:
-      "Walt Disney World Orlando y Disneyland California: parques, hoteles económicos, moderados y deluxe.",
+      "<b>Walt Disney World Orlando y Disneyland California:</b> parques, hoteles económicos, moderados y deluxe.",
     foto: disney,
   },
   {
     id: "universal",
     nombre: "Universal",
     descripcion:
-      "Universal Orlando con Epic Universe, y el nuevo Universal Kids Resort en Texas.",
+      "<b>Universal Orlando</b> con Epic Universe, y el nuevo Universal Kids Resort en Texas.",
     foto: universal,
   },
   {
     id: "cruceros",
     nombre: "Cruceros",
     descripcion:
-      "Disney Cruise Line, Royal Caribbean y MSC — itinerarios para toda la familia.",
+      "<b>Disney Cruise Line, Royal Caribbean y MSC</b> — itinerarios para toda la familia.",
     foto: cruceros,
   },
   {
     id: "otros-tickets",
     nombre: "Otros tickets",
     descripcion:
-      "Halloween, Navidad, After Hours, SeaWorld, Busch Gardens, acuáticos y Legoland.",
+      "<b>Halloween, Navidad, After Hours, SeaWorld, Busch Gardens,</b> acuáticos y Legoland.",
     foto: otrosTickets,
   },
   {
     id: "otros-destinos",
     nombre: "Otros destinos",
     descripcion:
-      "Walt Disney World Orlando y Disneyland California: parques, hoteles económicos, moderados y deluxe.",
+      "<b>Caribe, playas paradisíacas, Europa</b> y los mejores destinos internacionales para tus próximas vacaciones.",
     foto: otrosDestinos,
   },
 ];

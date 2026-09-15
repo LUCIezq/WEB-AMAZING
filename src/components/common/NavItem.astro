@@ -1,21 +1,117 @@
 ---
+import type { DropdownItem } from "@data/Nav";
+import Star from "@components/icons/Star.astro";
+
 interface Props {
   href: string;
   label: string;
   isActive: boolean;
+  dropdown?: DropdownItem[];
+  currentPath?: string;
 }
 
-const { href, label, isActive } = Astro.props;
+const { href, label, isActive, dropdown, currentPath = "" } = Astro.props;
+const hasDropdown = dropdown && dropdown.length > 0;
 ---
 
-<li>
+<li class:list={["relative", hasDropdown ? "group" : ""]}>
+  <!-- Main Nav Link -->
   <a
     href={href}
     class:list={[
-      "relative pb-1 transition-colors",
+      "relative pb-1 transition-colors inline-flex items-center gap-1",
       isActive
-        ? "text-violet-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-violet-600"
-        : "text-gray-700 hover:text-violet-500",
-    ]}>{label}</a
+        ? "text-primary font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary"
+        : "text-gray-700 hover:text-primary",
+    ]}
   >
+    {label}
+  </a>
+
+  {hasDropdown && (
+    <>
+      <!-- Desktop Dropdown Menu with Hover Bridge -->
+      <div
+        class="hidden md:block absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible -translate-y-1.5 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200 ease-out z-50"
+      >
+        <div class="relative bg-white/75 backdrop-blur-xl rounded-2xl shadow-[0_16px_40px_rgba(21,19,42,0.12),0_2px_8px_rgba(21,19,42,0.06)] border border-white/70 p-2 min-w-[210px]">
+          <!-- Tooltip Caret / Arrow -->
+          <div
+            class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45 bg-white/75 backdrop-blur-xl border-t border-l border-white/70 rounded-tl-[2.5px] shadow-[-2px_-2px_4px_rgba(0,0,0,0.02)] z-10"
+            aria-hidden="true"
+          />
+
+          <!-- Dropdown items list -->
+          <ul class="relative z-20 flex flex-col gap-0.5">
+            {dropdown.map((subItem) => {
+              const isSubActive =
+                currentPath === subItem.href ||
+                (subItem.href !== "/" && currentPath.startsWith(subItem.href));
+
+              return (
+                <li>
+                  <a
+                    href={subItem.href}
+                    class:list={[
+                      "group/sub flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-instrument transition-all duration-150",
+                      isSubActive
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "text-gray-700 hover:bg-primary/10 hover:text-primary",
+                    ]}
+                  >
+                    <span>{subItem.label}</span>
+                    <Star
+                      fill="currentColor"
+                      width="13"
+                      height="13"
+                      class:list={[
+                        "shrink-0 transition-all duration-150",
+                        isSubActive
+                          ? "text-primary scale-110"
+                          : "text-gray-800 group-hover/sub:text-primary group-hover/sub:scale-110",
+                      ]}
+                    />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu (Inline indented list) -->
+      <ul class="md:hidden flex flex-col gap-1 pl-4 pt-2 border-l-2 border-primary/20 ml-2 mt-1">
+        {dropdown.map((subItem) => {
+          const isSubActive =
+            currentPath === subItem.href ||
+            (subItem.href !== "/" && currentPath.startsWith(subItem.href));
+
+          return (
+            <li>
+              <a
+                href={subItem.href}
+                class:list={[
+                  "flex items-center justify-between px-3 py-2 rounded-lg text-sm font-instrument transition-colors",
+                  isSubActive
+                    ? "bg-primary/10 text-primary font-medium"
+                    : "text-gray-600 hover:text-primary hover:bg-primary/5",
+                ]}
+              >
+                <span>{subItem.label}</span>
+                <Star
+                  fill="currentColor"
+                  width="12"
+                  height="12"
+                  class:list={[
+                    "shrink-0",
+                    isSubActive ? "text-primary" : "text-gray-700",
+                  ]}
+                />
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  )}
 </li>

@@ -18,6 +18,8 @@ const ruta = Astro.url.pathname;
           }
           href={item.href}
           label={item.label}
+          dropdown={item.dropdown}
+          currentPath={ruta}
         />
       ))
     }

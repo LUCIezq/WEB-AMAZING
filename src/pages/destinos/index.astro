@@ -4,20 +4,23 @@ import { Image } from "astro:assets";
 import { destinos } from "@data/Destinos";
 import ArrowRight from "@components/icons/ArrowRight.astro";
 import TopUp from "@components/common/TopUp.astro";
+
+// Duplicate items so Embla has enough slides to loop and center perfectly
+const carouselDestinos = [...destinos, ...destinos];
 ---
 
 <BaseLayout title="Destinos - Disney Amazing">
   <div
     id="top"
-    class="flex w-full flex-col items-center justify-center gap-10 px-4 pt-32 text-center sm:px-6 sm:pt-40"
+    class="flex w-full flex-col items-center justify-center gap-4 pt-24 text-center sm:pt-32"
   >
-    <div class="grid place-items-center">
+    <div class="grid place-items-center gap-2 px-4 max-w-3xl">
       <span
-        class="uppercase font-instrument font-medium text-subtitle-sm text-acent"
+        class="uppercase font-instrument font-semibold text-subtitle-sm text-primary tracking-widest"
       >
         Destinos
       </span>
-      <h1 class="text-4xl font-display font-bold sm:text-title-lg">
+      <h1 class="text-4xl font-display font-bold sm:text-title-lg text-acent">
         ¿Por dónde querés empezar?
       </h1>
       <p class="max-w-md font-instrument text-sm text-gray-600 sm:text-base">
@@ -25,42 +28,38 @@ import TopUp from "@components/common/TopUp.astro";
         que necesitás saber antes de cotizar.
       </p>
     </div>
-    <div class="relative w-full pb-16">
-      <div class="embla w-full overflow-hidden">
-        <div class="embla__container flex gap-4 px-4">
+
+    <div class="relative w-full">
+      <!-- Full-bleed carousel with generous vertical padding to prevent shadow clipping -->
+      <div class="embla w-full overflow-hidden pt-4 pb-16 sm:pb-20">
+        <div class="embla__container flex items-center">
           {
-            destinos.map((a) => (
-              <div class="embla__slide min-w-0 flex-[0_0_86%] sm:flex-[0_0_55%] lg:flex-[0_0_25%]">
-                <div class="destination-card group relative aspect-2/3 overflow-hidden rounded-3xl shadow-xl">
+            carouselDestinos.map((a, idx) => (
+              <div
+                class="embla__slide min-w-0 flex-[0_0_65%] sm:flex-[0_0_38%] lg:flex-[0_0_24%] px-2 sm:px-3 py-4 select-none"
+                data-dest-id={a.id}
+                data-dest-index={idx % destinos.length}
+              >
+                <div class="destination-card group relative aspect-[3/4] overflow-hidden rounded-3xl cursor-pointer">
                   <Image
                     src={a.foto}
                     alt={`Destino ${a.nombre}`}
-                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
 
-                  <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-transparent" />
                   <div class="destination-card-glow absolute inset-0 rounded-3xl" aria-hidden="true" />
                   <span class="destination-card-star destination-card-star-one" aria-hidden="true">✦</span>
                   <span class="destination-card-star destination-card-star-two" aria-hidden="true">✦</span>
 
-                  <div class="absolute inset-0 z-10 flex flex-col justify-end p-4 text-start sm:p-6">
-                    <h3 class="mb-2 font-display text-3xl font-bold text-white sm:text-4xl">
+                  <div class="absolute inset-0 z-10 flex flex-col justify-end p-4 text-start sm:p-5">
+                    <h3 class="mb-1 font-display text-2xl font-bold text-white sm:text-3xl">
                       {a.nombre}
                     </h3>
-                    <p class="text-sm leading-snug text-white sm:text-subtitle-lg">
-                      {a.descripcion}
-                    </p>
+                    <p class="text-xs leading-snug text-white/95 sm:text-sm font-instrument font-light line-clamp-3 sm:line-clamp-none" set:html={a.descripcion} />
                     <a
                       href={`/destinos/${a.id}`}
-                      class="inline-flex gap-1 items-center justify-center 
-                      align-middle select-none font-sans font-medium text-center 
-                      px-5 py-3 text-white text-sm  rounded-3xl bg-white/10 border border-white/50 
-                    shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)]
-                     hover:bg-white/30 transition-all duration-300 before:absolute place-self-start 
-                     before:inset-0 before:rounded-3xl mt-7 before:bg-linear-to-br before:from-white/60 
-                     before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none 
-                     after:absolute after:inset-0 after:rounded-3xl after:bg-linear-to-br after:from-white/30 after:via-transparent after:to-transparent
-                      after:opacity-50 after:pointer-events-none  antialiased"
+                      class="inline-flex items-center gap-2 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md border border-white/50 px-3.5 py-1.5 text-xs font-semibold text-white tracking-wider transition-all duration-300 shadow-md mt-4 place-self-start"
                     >
                       EXPLORAR
                       <ArrowRight />
@@ -73,7 +72,7 @@ import TopUp from "@components/common/TopUp.astro";
         </div>
       </div>
 
-      <div class="embla__dots flex justify-center gap-2 mt-6"></div>
+      <div class="embla__dots flex justify-center items-center gap-2 -mt-8 mb-8 sm:-mt-10 sm:mb-10"></div>
     </div>
   </div>
   <TopUp href="top" />
@@ -82,19 +81,17 @@ import TopUp from "@components/common/TopUp.astro";
 <style>
   .destination-card {
     isolation: isolate;
-    animation: destination-card-enter 700ms both;
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease, box-shadow 500ms ease;
+    transform: scale(0.9);
+    opacity: 0.8;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
   }
 
-  .embla__slide:nth-child(2) .destination-card {
-    animation-delay: 100ms;
-  }
-
-  .embla__slide:nth-child(3) .destination-card {
-    animation-delay: 200ms;
-  }
-
-  .embla__slide:nth-child(4) .destination-card {
-    animation-delay: 300ms;
+  .destination-card.is-active {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    z-index: 10;
   }
 
   .destination-card-glow {
@@ -145,17 +142,6 @@ import TopUp from "@components/common/TopUp.astro";
     animation-delay: 140ms;
   }
 
-  @keyframes destination-card-enter {
-    from {
-      opacity: 0;
-      transform: translateY(1rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   @keyframes destination-card-glow {
     0%,
     100% {
@@ -185,12 +171,14 @@ import TopUp from "@components/common/TopUp.astro";
 
   @media (prefers-reduced-motion: reduce) {
     .destination-card {
-      animation: none;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
     }
 
     .destination-card-glow,
     .destination-card-star {
-      animation: none;
+      animation: none !important;
     }
   }
 </style>
@@ -199,52 +187,98 @@ import TopUp from "@components/common/TopUp.astro";
   import EmblaCarousel from "embla-carousel";
   import Autoplay from "embla-carousel-autoplay";
 
+  let emblaInstance: ReturnType<typeof EmblaCarousel> | null = null;
+
   const initializeDestinationsCarousel = () => {
     const viewport = document.querySelector(".embla") as HTMLElement | null;
-    const dotsContainer = document.querySelector(
-      ".embla__dots",
-    ) as HTMLElement | null;
+    const dotsContainer = document.querySelector(".embla__dots") as HTMLElement | null;
 
     if (!viewport || !dotsContainer) {
       return;
     }
 
-    const embla = EmblaCarousel(viewport, { loop: true, align: "center" }, [
-      Autoplay({ delay: 2500 }),
-    ]);
+    if (emblaInstance) {
+      emblaInstance.destroy();
+      emblaInstance = null;
+    }
 
+    const autoplay = Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true });
+    const embla = EmblaCarousel(viewport, {
+      loop: true,
+      align: "center",
+      startIndex: 0,
+      skipSnaps: false,
+    }, [autoplay]);
+
+    emblaInstance = embla;
+
+    const slides = embla.slideNodes();
     const scrollSnaps = embla.scrollSnapList();
-    dotsContainer.innerHTML = scrollSnaps
+
+    const totalDestinos = 5;
+
+    // Always generate exactly 5 dots for the 5 real destinations
+    dotsContainer.innerHTML = Array.from({ length: totalDestinos })
       .map(
         (_, i) =>
-          `<button class="embla__dot h-2 w-2 rounded-full bg-gray-300 transition-all duration-300" data-index="${i}" aria-label="Ir a la tarjeta ${i + 1}"></button>`,
+          `<button class="embla__dot h-2 rounded-full cursor-pointer transition-all duration-300" data-index="${i}" aria-label="Ir al destino ${i + 1}"></button>`,
       )
       .join("");
 
-    const dots = Array.from(
-      dotsContainer.querySelectorAll(".embla__dot"),
-    ) as HTMLElement[];
+    const dots = Array.from(dotsContainer.querySelectorAll(".embla__dot")) as HTMLElement[];
 
-    const updateDots = () => {
-      const selected = embla.selectedScrollSnap();
+    const updateUI = () => {
+      const selectedIndex = embla.selectedScrollSnap();
+      const activeDestIndex = ((selectedIndex % totalDestinos) + totalDestinos) % totalDestinos;
+
+      slides.forEach((slide, index) => {
+        const card = slide.querySelector(".destination-card");
+        if (!card) return;
+        if (index === selectedIndex) {
+          card.classList.add("is-active");
+        } else {
+          card.classList.remove("is-active");
+        }
+      });
+
       dots.forEach((dot, i) => {
-        dot.classList.toggle("bg-primary", i === selected);
-        dot.classList.toggle("w-6", i === selected);
-        dot.classList.toggle("bg-gray-300", i !== selected);
+        if (i === activeDestIndex) {
+          dot.className = "embla__dot h-2 w-7 rounded-full bg-[#7c80c4] transition-all duration-300";
+        } else {
+          dot.className = "embla__dot h-2 w-2 rounded-full bg-[#a5d6ef] opacity-70 hover:opacity-100 transition-all duration-300";
+        }
       });
     };
 
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", () => embla.scrollTo(i));
+    dots.forEach((dot, targetIndex) => {
+      dot.addEventListener("click", () => {
+        const currentSnap = embla.selectedScrollSnap();
+        const currentDestIndex = ((currentSnap % totalDestinos) + totalDestinos) % totalDestinos;
+        let diff = targetIndex - currentDestIndex;
+        // Shortest jump path in a modular 5-item loop
+        if (diff > 2) diff -= totalDestinos;
+        if (diff < -2) diff += totalDestinos;
+        embla.scrollTo(currentSnap + diff);
+      });
     });
 
-    embla.on("select", updateDots);
-    embla.on("init", updateDots);
-    embla.plugins().autoplay?.play();
+    slides.forEach((slide, index) => {
+      slide.addEventListener("click", (e) => {
+        if (!(e.target as HTMLElement).closest("a")) {
+          embla.scrollTo(index);
+        }
+      });
+    });
+
+    embla.on("select", updateUI);
+    embla.on("init", updateUI);
+    embla.on("reInit", updateUI);
+
+    updateUI();
   };
 
-  document.addEventListener(
-    "astro:page-load",
-    initializeDestinationsCarousel,
-  );
+  document.addEventListener("astro:page-load", initializeDestinationsCarousel);
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initializeDestinationsCarousel();
+  }
 </script>
