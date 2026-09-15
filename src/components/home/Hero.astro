@@ -2,18 +2,24 @@
 import Arrow from "@components/icons/Arrow.astro";
 import { homeData } from "@data/Home";
 import { Image } from "astro:assets";
-import backgroundHero from "@assets/home/background-hero.jpg";
+import buzzHero from "@assets/home/buzz.jpg";
 
 const { hero } = homeData;
 ---
 
-<section class="relative isolate min-h-[100svh] w-full overflow-hidden">
-  <Image
-    src={backgroundHero}
-    alt="Castillo de Disney iluminado - Amazing Travel"
-    loading="eager"
-    class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
-  />
+<section
+  id="hero-section"
+  class="relative isolate min-h-[100svh] w-full overflow-hidden"
+>
+  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+    <Image
+      id="hero-parallax-image"
+      src={buzzHero}
+      alt="Buzz Lightyear - Amazing Travel"
+      loading="eager"
+      class="absolute -top-[10%] inset-x-0 h-[140%] w-full object-cover object-center will-change-transform scale-105"
+    />
+  </div>
 
   <div class="absolute inset-0 z-0 bg-black/45"></div>
   <div
@@ -38,3 +44,38 @@ const { hero } = homeData;
     </a>
   </div>
 </section>
+
+<script>
+  function setupHeroParallax() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const hero = document.getElementById("hero-section");
+    const image = document.getElementById("hero-parallax-image");
+    if (!hero || !image) return;
+
+    let ticking = false;
+
+    const onScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const heroHeight = hero.offsetHeight;
+
+      // Parallax is active while the hero section is on screen
+      if (scrollY <= heroHeight) {
+        // Translate image downwards at 40% of scroll speed (moves slower than foreground)
+        const offset = scrollY * 0.4;
+        image.style.transform = `translate3d(0, ${offset}px, 0)`;
+      }
+      ticking = false;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Initial position on load
+    onScroll();
+  }
+
+  // Support both initial load and Astro ClientRouter page transitions
+  document.addEventListener("astro:page-load", setupHeroParallax);
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    setupHeroParallax();
+  }
+</script>

@@ -28,7 +28,7 @@ src/
 │   │   ├── logo.svg
 │   │   └── logo-invertido.svg
 │   ├── home/                      # Imágenes de la landing page principal
-│   │   ├── background-hero.jpg
+│   │   ├── buzz.jpg
 │   │   └── parks.jpg
 │   ├── destinos/                  # Fotos y recursos de destinos
 │   │   ├── cruceros.jpg
