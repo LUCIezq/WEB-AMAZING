@@ -1,14 +1,33 @@
 import type { ImageMetadata } from "astro";
 import disneyHero from "@assets/destinos/disney-background.jpg";
-import disneyDestination from "@assets/destinos/disney.jpg";
-import parks from "@assets/home/parks.jpg";
 import epcot from "@assets/destinos/parks/epcot.jpg";
 import magicKingdom from "@assets/destinos/parks/magic-kingdom.jpg";
 import hollywoodStudios from "@assets/destinos/parks/hollywood-studios.jpg";
 import animalKingdom from "@assets/destinos/parks/animal-kingdom.jpg";
 import blizzardBeach from "@assets/destinos/parks/blizzard-beach.jpg";
 import typhoonBeach from "@assets/destinos/parks/typhoon-beach.jpg";
-import demoHotel from "@assets/destinos/hotels/demo-hotel.jpg";
+import disneylandPark from "@assets/destinos/parks/disneyland-park.jpg";
+import adventurePark from "@assets/destinos/parks/adventure-park.jpg";
+
+import allStarMovies from "@assets/destinos/hotels/all-star-movies.jpg";
+import allStarSports from "@assets/destinos/hotels/all-star-sports.jpg";
+import popCentury from "@assets/destinos/hotels/pop-century.jpg";
+import artOfAnimation from "@assets/destinos/hotels/art-of-animation.webp";
+import caribbeanBeach from "@assets/destinos/hotels/caribbean-beach.jpg";
+import coronadoSprings from "@assets/destinos/hotels/coronado-springs.jpg";
+import portOrleansRiverside from "@assets/destinos/hotels/port-orleans-riverside.jpg";
+import portOrleansFrenchQuarter from "@assets/destinos/hotels/port-orleans-french-quarter.jpg";
+import animalKingdomLodge from "@assets/destinos/hotels/animal-kingdom-lodge.jpg";
+import beachClub from "@assets/destinos/hotels/beach-club.jpg";
+import boardwalkInn from "@assets/destinos/hotels/boardwalk-inn.jpg";
+import contemporary from "@assets/destinos/hotels/contemporary.jpg";
+import grandFloridian from "@assets/destinos/hotels/grand-floridian.jpg";
+import polynesianVillage from "@assets/destinos/hotels/polynesian-village.jpg";
+import wildernessLodge from "@assets/destinos/hotels/wilderness-lodge.jpg";
+import yachtClub from "@assets/destinos/hotels/yacht-club.jpg";
+import grandCalifornian from "@assets/destinos/hotels/grand-californian.jpg";
+import disneylandHotel from "@assets/destinos/hotels/disneyland-hotel.jpg";
+import pixarPlaceHotel from "@assets/destinos/hotels/pixar-place-hotel.jpg";
 
 export type HotelCategory = "económico" | "moderado" | "deluxe";
 
@@ -18,6 +37,7 @@ export interface Hotel {
   category: HotelCategory;
   tier?: string;
   photo: ImageMetadata;
+  photos?: ImageMetadata[];
   description: string;
   capacity: string;
   transport?: string;
@@ -30,6 +50,7 @@ export interface Park {
   name: string;
   type: Parktype;
   photo: ImageMetadata;
+  description?: string;
 }
 
 export interface SubDestination {
@@ -60,36 +81,53 @@ const disneyOrlando: SubDestination = {
   label: "Walt Disney World",
   parksCount: "4 + 2 de Agua",
   parks: [
-    { id: "epcot", name: "Disney's Epcot", type: "Temático", photo: epcot },
+    {
+      id: "epcot",
+      name: "Disney's Epcot",
+      type: "Temático",
+      photo: epcot,
+      description:
+        "Descubrí la innovación tecnológica del futuro y viajá por la cultura y sabores de 11 pabellones del mundo.",
+    },
     {
       id: "magic-kingdom",
       name: "Disney's Magic Kingdom",
       type: "Temático",
       photo: magicKingdom,
+      description:
+        "El reino de la fantasía donde los cuentos de hadas y personajes clásicos de Disney cobran vida frente al icónico castillo.",
     },
     {
       id: "hollywood-studios",
       name: "Disney's Hollywood Studios",
       type: "Temático",
       photo: hollywoodStudios,
+      description:
+        "Sumergite en la magia del cine de Hollywood, el universo de Star Wars: Galaxy's Edge y la diversión de Toy Story Land.",
     },
     {
       id: "animal-kingdom",
       name: "Disney's Animal Kingdom",
       type: "Temático",
       photo: animalKingdom,
+      description:
+        "Una fascinante aventura de vida salvaje, expediciones por la naturaleza y la increíble experiencia inmersiva de Pandora.",
     },
     {
       id: "blizzard-beach",
       name: "Disney's Blizzard Beach",
       type: "Acuático",
       photo: blizzardBeach,
+      description:
+        "Un legendario resort de esquí alpino convertido en un parque acuático colmado de toboganes veloces y diversión en la nieve.",
     },
     {
       id: "typhoon-lagoon",
       name: "Disney's Typhoon Lagoon",
       type: "Acuático",
       photo: typhoonBeach,
+      description:
+        "Un exótico paraíso tropical con una de las piscinas de olas más imponentes del mundo y relajantes paseos de agua.",
     },
   ],
   hotels: [
@@ -97,7 +135,7 @@ const disneyOrlando: SubDestination = {
       id: "all-star-movies",
       name: "Disney's All Star Movies Resort",
       category: "económico",
-      photo: demoHotel,
+      photo: allStarMovies,
       description:
         "Te sumerge en la magia del cine con escenarios inspirados en clásicos de Disney y Pixar. Sus habitaciones son ideales para quienes buscan una opción económica sin dejar de disfrutar de una experiencia inmersiva. Además, ofrece piscinas temáticas, patio de comidas, transporte gratuito a los parques y todos los beneficios de hospedarse dentro de Walt Disney World Resort.",
       capacity: "Habitaciones estándar: hasta 4 personas.",
@@ -108,7 +146,7 @@ const disneyOrlando: SubDestination = {
       id: "all-star-sports",
       name: "Disney's All-Star Sports Resort",
       category: "económico",
-      photo: demoHotel,
+      photo: allStarSports,
       description:
         "Es el hotel ideal para los fanáticos del deporte y para quienes buscan una estadía divertida a un excelente precio. Inspirado en disciplinas como el béisbol, el fútbol americano, el tenis y el surf, ofrece piscinas temáticas, patio de comidas, transporte gratuito a los parques y todos los beneficios de hospedarse dentro de Walt Disney World Resort.",
       capacity: "Habitaciones estándar: hasta 4 personas.",
@@ -119,7 +157,7 @@ const disneyOrlando: SubDestination = {
       id: "pop-century",
       name: "Disney's Pop Century Resort",
       category: "económico",
-      photo: demoHotel,
+      photo: popCentury,
       description:
         "Celebra las décadas más icónicas de la cultura pop con una temática colorida y llena de nostalgia, ofreciendo comodidad y un estilo moderno. Cuenta con piscinas temáticas, patio de comidas y la ventaja de tener acceso directo al Disney Skyliner, que conecta fácilmente con EPCOT y Disney's Hollywood Studios, junto con todos los beneficios de hospedarse dentro de Walt Disney World Resort.",
       capacity: "Habitaciones estándar: hasta 4 personas.",
@@ -130,7 +168,7 @@ const disneyOrlando: SubDestination = {
       id: "art-of-animation",
       name: "Disney's Art of Animation Resort",
       category: "económico",
-      photo: demoHotel,
+      photo: artOfAnimation,
       description:
         "Te invita a vivir la magia de algunas de las películas más queridas de Disney y Pixar, como Cars, Buscando a Nemo, El Rey León y La Sirenita. Cuenta con increíbles piscinas temáticas, patio de comidas, acceso al Disney Skyliner y todos los beneficios de hospedarse dentro de Walt Disney World Resort.",
       capacity:
@@ -143,7 +181,7 @@ const disneyOrlando: SubDestination = {
       id: "caribbean-beach",
       name: "Disney's Caribbean Beach Resort",
       category: "moderado",
-      photo: demoHotel,
+      photo: caribbeanBeach,
       description:
         "Inspirado en las islas del Caribe, este resort combina playas de arena blanca, amplias piscinas y un ambiente tropical relajado.",
       capacity: "Habitaciones estándar: hasta 5 personas.",
@@ -155,7 +193,7 @@ const disneyOrlando: SubDestination = {
       id: "coronado-springs",
       name: "Disney's Coronado Springs Resort",
       category: "moderado",
-      photo: demoHotel,
+      photo: coronadoSprings,
       description:
         "Un elegante resort con inspiración española, mexicana y del suroeste americano, ideal para quienes buscan un ambiente más sofisticado.",
       capacity:
@@ -167,7 +205,7 @@ const disneyOrlando: SubDestination = {
       id: "port-orleans-riverside",
       name: "Disney's Port Orleans Resort – Riverside",
       category: "moderado",
-      photo: demoHotel,
+      photo: portOrleansRiverside,
       description:
         "Rodeado de naturaleza y con el encanto del sur de Estados Unidos, es una excelente opción para familias.",
       capacity: "Habitaciones estándar: hasta 5 personas.",
@@ -178,7 +216,7 @@ const disneyOrlando: SubDestination = {
       id: "port-orleans-french-quarter",
       name: "Disney's Port Orleans Resort – French Quarter",
       category: "moderado",
-      photo: demoHotel,
+      photo: portOrleansFrenchQuarter,
       description:
         "El hotel Moderate más pequeño de Disney, inspirado en el histórico barrio francés de Nueva Orleans. Brinda un ambiente tranquilo y pintoresco.",
       capacity: "Habitaciones estándar: hasta 4 personas.",
@@ -190,7 +228,7 @@ const disneyOrlando: SubDestination = {
       id: "animal-kingdom-lodge",
       name: "Disney's Animal Kingdom Lodge",
       category: "deluxe",
-      photo: demoHotel,
+      photo: animalKingdomLodge,
       description:
         "Inspirado en las reservas africanas, este exclusivo resort ofrece vistas a la sabana con animales como jirafas y cebras.",
       capacity:
@@ -203,7 +241,7 @@ const disneyOrlando: SubDestination = {
       id: "beach-club",
       name: "Disney's Beach Club Resort",
       category: "deluxe",
-      photo: demoHotel,
+      photo: beachClub,
       description:
         "Ubicado a pasos de EPCOT y a un agradable paseo de Hollywood Studios, destaca por su espectacular piscina Stormalong Bay.",
       capacity:
@@ -216,7 +254,7 @@ const disneyOrlando: SubDestination = {
       id: "boardwalk-inn",
       name: "Disney's BoardWalk Inn",
       category: "deluxe",
-      photo: demoHotel,
+      photo: boardwalkInn,
       description:
         "Con el encanto de los paseos costeros de principios del siglo XX, este resort ofrece una ubicación privilegiada.",
       capacity:
@@ -229,7 +267,7 @@ const disneyOrlando: SubDestination = {
       id: "contemporary",
       name: "Disney's Contemporary Resort",
       category: "deluxe",
-      photo: demoHotel,
+      photo: contemporary,
       description:
         "Uno de los hoteles más icónicos de Disney. Además de sus habitaciones estándar, ofrece suites y las exclusivas villas de Bay Lake Tower, con opciones de 1, 2 y 3 dormitorios ideales para familias grandes o grupos que buscan mayor comodidad y espacio.",
       capacity:
@@ -242,7 +280,7 @@ const disneyOrlando: SubDestination = {
       id: "grand-floridian",
       name: "Disney's Grand Floridian Resort Spa",
       category: "deluxe",
-      photo: demoHotel,
+      photo: grandFloridian,
       description:
         "El resort más elegante de Disney World, con un ambiente victoriano y servicios de lujo.",
       capacity:
@@ -255,7 +293,7 @@ const disneyOrlando: SubDestination = {
       id: "polynesian-village",
       name: "Disney's Polynesian Village Resort",
       category: "deluxe",
-      photo: demoHotel,
+      photo: polynesianVillage,
       description:
         "Inspirado en las islas del Pacífico, ofrece un ambiente tropical y excelentes vistas de los fuegos artificiales de Magic Kingdom.",
       capacity:
@@ -268,7 +306,7 @@ const disneyOrlando: SubDestination = {
       id: "wilderness-lodge",
       name: "Disney's Wilderness Lodge",
       category: "deluxe",
-      photo: demoHotel,
+      photo: wildernessLodge,
       description:
         "Con arquitectura inspirada en los grandes parques nacionales de Estados Unidos, combina naturaleza y confort.",
       capacity:
@@ -281,7 +319,7 @@ const disneyOrlando: SubDestination = {
       id: "yacht-club",
       name: "Disney's Yacht Club Resort",
       category: "deluxe",
-      photo: demoHotel,
+      photo: yachtClub,
       description:
         "Con un estilo náutico clásico, comparte la piscina Stormalong Bay con Beach Club y goza de una ubicación privilegiada.",
       capacity:
@@ -295,20 +333,24 @@ const disneyOrlando: SubDestination = {
 
 const disneyCalifornia: SubDestination = {
   id: "california",
-  label: "Disneyland California ",
+  label: "Disneyland California",
   parksCount: "2",
   parks: [
     {
       id: "disneyland-park",
       name: "Disneyland Park",
       type: "Temático",
-      photo: disneyDestination,
+      photo: disneylandPark,
+      description:
+        "El parque temático original concebido por Walt Disney, donde la magia, la fantasía y los recuerdos inolvidables comenzaron.",
     },
     {
       id: "adventure-park",
-      name: "Adventure Park",
+      name: "Disney California Adventure",
       type: "Temático",
-      photo: parks,
+      photo: adventurePark,
+      description:
+        "La celebración de la emoción en California: Pixar Pier, Avengers Campus y atracciones legendarias llenas de adrenalina.",
     },
   ],
   hotels: [
@@ -316,18 +358,20 @@ const disneyCalifornia: SubDestination = {
       id: "grand-californian",
       name: "Disney's Grand Californian Hotel & Spa",
       category: "deluxe",
-      photo: demoHotel,
+      photo: grandCalifornian,
       description:
         "El hotel más exclusivo de Disneyland Resort, inspirado en la arquitectura Craftsman de California. Ofrece una ubicación privilegiada con entrada directa a Disney California Adventure y se encuentra a pocos minutos caminando de Disneyland Park y Downtown Disney.",
       capacity:
         "Habitaciones estándar: hasta 5 personas. Suites y villas: hasta 12 personas.",
+      transport:
+        "Entrada directa a pie a Disney California Adventure y Downtown Disney.",
       earlyParkAdmission: "30 minutos antes de la apertura.",
     },
     {
       id: "disneyland-hotel",
       name: "Disneyland Hotel",
       category: "deluxe",
-      photo: demoHotel,
+      photo: disneylandHotel,
       description:
         "El hotel original de Disneyland combina la nostalgia de la historia Disney con modernas comodidades y una ambientación llena de magia. Se encuentra a pocos minutos caminando de los parques a través de Downtown Disney.",
       capacity: "Habitaciones: hasta 5 personas. Villas: hasta 12 personas.",
@@ -339,11 +383,13 @@ const disneyCalifornia: SubDestination = {
       id: "pixar-place-hotel",
       name: "Pixar Place Hotel",
       category: "deluxe",
-      photo: demoHotel,
+      photo: pixarPlaceHotel,
       description:
         "Un hotel moderno inspirado en el universo Pixar, con detalles de películas como Toy Story, Cars y Los Increíbles. Está ubicado cerca de los parques, con acceso a pie a Disneyland Park y Disney California Adventure.",
       capacity:
         "Habitaciones estándar: hasta 5 personas. Suites: hasta 10 personas.",
+      transport:
+        "Acceso a pie a Disneyland Park y Disney California Adventure.",
       earlyParkAdmission: "30 minutos antes de la apertura.",
     },
   ],
@@ -359,5 +405,3 @@ export const disney: MainDestination = {
     { label: "Cotizá tickets", type: "tickets" },
   ],
 };
-
-// export const mainDestinations: MainDestination[] = [disney, universal];

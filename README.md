@@ -10,8 +10,8 @@ Construido con un enfoque en **máximo rendimiento, accesibilidad (a11y), animac
 
 * **Framework:** [Astro v7+](https://astro.build/) (Static Site Generation con `astro:transitions` / `ClientRouter`)
 * **Estilos:** [Tailwind CSS v4](https://tailwindcss.com/) con `@tailwindcss/vite` y animaciones vía `tailwind-animations`
-* **Tipografías:** `@fontsource-variable/playfair-display` y `@fontsource-variable/instrument-sans`
-* **Carruseles e Interactividad:** [Embla Carousel](https://www.embla-carousel.com/) + Autoplay plugin
+* **Tipografías:** `@fontsource/dm-serif-display` (encabezados y display) y `@fontsource-variable/instrument-sans` (textos y UI)
+* **Carruseles e Interactividad:** [Embla Carousel](https://www.embla-carousel.com/)
 * **Optimización de Imágenes:** [Sharp](https://sharp.pixelplumbing.com/) (conversión automática a formato WebP)
 * **Gestor de Paquetes:** [pnpm](https://pnpm.io/)
 
@@ -31,8 +31,13 @@ Construido con un enfoque en **máximo rendimiento, accesibilidad (a11y), animac
 * **Carrusel Infinito de Destinos (`/destinos`):**
   * Carrusel continuo impulsado por **Embla Carousel** con autoplay, centrado dinámico de tarjeta activa e indicadores de puntos interactivos.
   * Efectos de resplandor (*glow*) y micro-animaciones al hacer hover sobre las tarjetas.
+* **Pantalla de Destino Disney y Subdestinos (`/destinos/disney`):**
+  * Selector interactivo de subdestinos (**Walt Disney World** y **Disneyland California**) con alternancia instantánea sin recarga y sincronización de hash en URL (`#orlando` y `#california`).
+  * Cuadrícula responsiva de parques temáticos y acuáticos con tipografía **DM Serif Display**, micro-interacciones hover y badges.
+  * Carruseles horizontales de hoteles categorizados (*Económicos*, *Moderados*, *Deluxe*) adaptados a ancho completo de escritorio (`max-w-[1600px]`) con soporte para drag de ratón y swipe táctil sin disparar clics involuntarios.
+  * Ventana modal accesible (`role="dialog"`, `aria-modal`) con tarjeta ampliada, especificaciones completas (capacidad, transporte, early admission), descripción detallada y enlaces directos a `/cotiza` con parámetros predefinidos.
 * **Modales Interactivos de Hoteles (`/destinos/disney`):**
-  * Ventana modal accesible (`role="dialog"`, `aria-modal`) con botones directos para cotizar paquetes, tickets individuales o cerrar el panel.
+  * Ventana modal accesible con botones directos para cotizar paquetes o tickets individuales pasando los datos del hotel seleccionado.
 * **Efecto Parallax en Hero (`Hero.astro`):**
   * Animación fluida impulsada por el scroll con la imagen de Buzz Lightyear y elementos visuales superpuestos.
 
