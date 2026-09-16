@@ -17,6 +17,8 @@ Manage the background server with `astro dev stop`, `astro dev status`, and `ast
   - `@data/*` -> `src/data/*`
   - `@styles/*` -> `src/styles/*`
 - **Naming Conventions:** Use PascalCase for all Astro components and icons (`ArrowRight.astro`, `BaseLayout.astro`).
+- **Navigation & Dropdowns:** Configure all header links and dropdown menus in `@data/Nav.ts` via the `dropdown` array on `NavItem`. `NavItem.astro` handles the floating glassmorphic popover on desktop and the indented list on mobile.
+- **Global Components & Transitions:** Use `transition:persist` for persistent client elements across page loads (such as `@components/common/Cursor.astro`) inside `BaseLayout.astro`.
 - **Commits:** Keep commits atomic, clean, and follow Conventional Commits (`feat:`, `fix:`, `refactor:`, `docs:`, etc.).
 
 ## Documentation

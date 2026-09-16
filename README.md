@@ -17,6 +17,27 @@ Construido con un enfoque en **máximo rendimiento, accesibilidad (a11y), animac
 
 ---
 
+## ✨ Características y Experiencia de Usuario
+
+* **Navegación con Menú Desplegable (*Glassmorphism*):**
+  * Tarjeta flotante con efecto de vidrio esmerilado (`backdrop-blur-xl`, `bg-white/75`, borde `border-white/70`).
+  * Flecha indicadora superior (*caret*) centrada bajo el enlace padre.
+  * Íconos de destello de 4 puntas (`✦` vía `Star.astro`) y estados *hover* / activo destacados en color de marca (`#7C80C4`).
+  * Totalmente reutilizable desde [`src/data/Nav.ts`](src/data/Nav.ts) mediante la propiedad `dropdown` en cualquier elemento de navegación.
+  * Adaptación responsive: menú flotante en desktop y sublista anidada e indentada en la versión móvil.
+* **Cursor Mágico Interactivo (`Cursor.astro`):**
+  * Estela de partículas de estrellas (`✦`) en tonos corporativos lila y rosa que siguen el movimiento del cursor en pantallas de escritorio.
+  * Persistente entre transiciones de página mediante `transition:persist` de Astro.
+* **Carrusel Infinito de Destinos (`/destinos`):**
+  * Carrusel continuo impulsado por **Embla Carousel** con autoplay, centrado dinámico de tarjeta activa e indicadores de puntos interactivos.
+  * Efectos de resplandor (*glow*) y micro-animaciones al hacer hover sobre las tarjetas.
+* **Modales Interactivos de Hoteles (`/destinos/disney`):**
+  * Ventana modal accesible (`role="dialog"`, `aria-modal`) con botones directos para cotizar paquetes, tickets individuales o cerrar el panel.
+* **Efecto Parallax en Hero (`Hero.astro`):**
+  * Animación fluida impulsada por el scroll con la imagen de Buzz Lightyear y elementos visuales superpuestos.
+
+---
+
 ## 📁 Estructura del Proyecto
 
 El código fuente está modularizado por dominios para facilitar la navegación y escalabilidad:
@@ -53,10 +74,11 @@ src/
 │
 ├── components/
 │   ├── common/                    # Componentes globales de UI y navegación
+│   │   ├── Cursor.astro           # Efecto de cursor con estela de destellos animados (✦)
 │   │   ├── Footer.astro
 │   │   ├── Header.astro
 │   │   ├── Nav.astro
-│   │   ├── NavItem.astro
+│   │   ├── NavItem.astro          # Enlace de navegación con soporte para menús desplegables (glassmorphism)
 │   │   ├── SocialIcon.astro
 │   │   └── TopUp.astro
 │   ├── home/                      # Secciones exclusivas de la página de inicio
